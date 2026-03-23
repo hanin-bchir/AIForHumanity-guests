@@ -17,6 +17,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:fl
 .nav-links{display:flex;gap:1.5rem;list-style:none;}
 .nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;font-weight:500;}
 .nav-links a:hover{color:var(--purple-light);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--muted);border-radius:2px;transition:all .3s;}
+.nav-mobile{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(3,7,18,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);padding:1.5rem;flex-direction:column;gap:1.25rem;z-index:99;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:.5rem 0;border-bottom:1px solid var(--glass-border);}
 #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 50%,#1a0533 0%,#060616 50%,#030712 100%);}
 #particles-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 .portal-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;pointer-events:none;}
@@ -252,19 +257,147 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
 .footer-text{font-size:11px;color:var(--muted);letter-spacing:1px;}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
+/* ── TABLET ── */
 @media(max-width:900px){
   .about-grid,.speakers-grid,.judging-cols,.ieee-intro{grid-template-columns:1fr;}
-  .tracks,.canvas-grid{grid-template-columns:1fr;}
+  .tracks{grid-template-columns:1fr;}
+  .canvas-grid{grid-template-columns:1fr 1fr;}
   .criteria-grid{grid-template-columns:1fr 1fr;}
-  .tl-item,.tl-item:nth-child(even){flex-direction:column;}
-  .tl-line{display:none;}
-  .tl-time-side,.tl-item:nth-child(even) .tl-time-side{text-align:left;}
-  .tl-center{flex-direction:row;gap:.75rem;align-items:center;}
-  .portal-wrap{width:320px;height:320px;}
-  nav .nav-links{display:none;}
+  .ieee-badges{gap:10px;}
   .gallery-slide{min-width:50%;}
   .d-arrow{display:none;}
   .decision-flow{gap:8px;}
+}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  /* Hide desktop cursor on touch */
+  .cursor,.cursor-dot{display:none;}
+
+  /* Nav mobile */
+  nav{padding:.75rem 1rem;}
+  .nav-logo{font-size:12px;letter-spacing:2px;}
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+
+  /* Hero */
+  #hero{min-height:100svh;padding-top:60px;}
+  .portal-wrap{width:280px;height:280px;}
+  .portal-ring:nth-child(1){box-shadow:0 0 30px rgba(124,58,237,.3);}
+  .portal-ring:nth-child(2){inset:14px;}
+  .portal-ring:nth-child(3){inset:30px;}
+  .portal-ring:nth-child(4){inset:50px;}
+  .portal-ring:nth-child(5){inset:72px;}
+  .portal-glow{inset:90px;}
+  .rune{font-size:8px;letter-spacing:2px;}
+  .geo{display:none;}
+  .hero-content{padding:1rem;}
+  .hero-eyebrow{font-size:9px;letter-spacing:4px;margin-bottom:1rem;}
+  .hero-title{font-size:2.2rem;margin-bottom:.75rem;}
+  .hero-subtitle{font-size:.85rem;letter-spacing:5px;margin-bottom:2rem;}
+  .hero-meta{gap:1rem;flex-wrap:wrap;justify-content:center;}
+  .hero-divider{height:30px;}
+  .hero-meta-value{font-size:13px;}
+  .hero-meta-label{font-size:9px;}
+
+  /* Sections */
+  section{padding:3.5rem 1rem;}
+  .section-title{font-size:1.4rem;}
+  .section-desc{font-size:13px;margin-bottom:2rem;}
+  .sep{width:80px;}
+
+  /* About */
+  .about-grid{grid-template-columns:1fr;gap:1rem;}
+  .about-card{padding:1.25rem;}
+  .about-card-icon{width:38px;height:38px;font-size:16px;}
+  .about-card-title{font-size:12px;}
+  .about-card-body{font-size:12px;}
+  .challenge-box{padding:1.5rem 1rem;}
+  .challenge-question{font-size:.95rem;}
+  .tracks{grid-template-columns:1fr;gap:.75rem;}
+  .track{padding:1rem;}
+  .track-num{font-size:18px;}
+
+  /* IEEE */
+  .ieee-intro{grid-template-columns:1fr;gap:2rem;}
+  .ieee-lead{font-size:13px;}
+  .ieee-body{font-size:12px;}
+  .ieee-stats{grid-template-columns:1fr 1fr;gap:8px;}
+  .ieee-stat{padding:.75rem;}
+  .ieee-stat-num{font-size:18px;}
+  .ieee-stat-label{font-size:9px;}
+  .ieee-badge{padding:.9rem 1rem;gap:10px;}
+  .badge-icon{width:32px;height:32px;font-size:14px;}
+  .badge-title{font-size:11px;}
+  .badge-body{font-size:10px;}
+
+  /* Gallery — 1 slide at a time on phone */
+  .gallery-slide{min-width:100%;}
+  .gallery-photo{aspect-ratio:16/9;border-radius:10px;}
+  .gallery-btn{width:36px;height:36px;font-size:14px;}
+  .gallery-dots{gap:6px;}
+  .gallery-dot{width:5px;height:5px;}
+
+  /* Speakers */
+  .speakers-grid{grid-template-columns:1fr;gap:1.25rem;}
+  .speaker-card{padding:1.25rem;border-radius:18px;}
+  .speaker-photo{width:80px;height:80px;}
+  .initials{font-size:20px;}
+  .speaker-name{font-size:15px;}
+  .speaker-company{font-size:11px;}
+  .role-chip{font-size:9px;padding:2px 8px;}
+  .speaker-bio{font-size:12px;}
+  .strength{padding:8px 10px;}
+  .strength-text{font-size:11px;}
+  .talk-box{padding:10px 12px;}
+  .talk-title{font-size:11px;}
+
+  /* Canvas */
+  .canvas-grid{grid-template-columns:1fr;gap:1rem;}
+  .canvas-step{padding:1.5rem 1.25rem;border-radius:16px;}
+  .canvas-num{font-size:36px;}
+  .canvas-step-title{font-size:13px;}
+  .canvas-step-body{font-size:11px;}
+
+  /* Timeline — single column on mobile */
+  .tl-container{padding-left:0;}
+  .tl-line{display:none;}
+  .tl-item,.tl-item:nth-child(even){flex-direction:row;gap:1rem;margin-bottom:1.25rem;}
+  .tl-time-side,.tl-item:nth-child(even) .tl-time-side{display:none;}
+  .tl-center{flex-direction:column;align-items:center;flex-shrink:0;padding-top:4px;}
+  .tl-dot-outer{width:26px;height:26px;}
+  .tl-dot-inner{width:10px;height:10px;}
+  .tl-card{padding:.9rem 1rem;border-radius:12px;}
+  .tl-card-title{font-size:12px;}
+  .tl-card-body{font-size:11px;}
+  .tl-tag{font-size:8px;padding:2px 6px;}
+
+  /* Judging */
+  .judging-intro-box{padding:1.25rem 1rem;}
+  .judging-intro-text{font-size:12px;}
+  .criteria-grid{grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem;}
+  .crit-card{padding:1.1rem .75rem;border-radius:12px;}
+  .crit-score{font-size:24px;}
+  .crit-name{font-size:11px;}
+  .crit-desc{font-size:9px;}
+  .judging-cols{grid-template-columns:1fr;gap:1rem;margin-bottom:1.5rem;}
+  .j-card{padding:1.25rem;}
+  .j-card-title{font-size:13px;}
+  .j-text{font-size:11px;}
+  .decision-box{padding:1.25rem 1rem;}
+  .decision-title{font-size:12px;margin-bottom:1.25rem;}
+  .decision-flow{flex-direction:column;gap:6px;}
+  .d-arrow{display:none;}
+  .d-step{max-width:100%;padding:12px;}
+  .d-step-num{font-size:16px;}
+  .d-step-label{font-size:10px;}
+  .d-step-body{font-size:9px;}
+  .jury-note{font-size:11px;padding:12px 14px;}
+
+  /* Footer */
+  footer{padding:1.5rem 1rem;}
+  .footer-logo{font-size:11px;letter-spacing:2px;}
+  .footer-text{font-size:10px;}
 }
 </style>
 </head>
@@ -282,7 +415,17 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
     <li><a href="#timeline">Timeline</a></li>
     <li><a href="#judging">Judging</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#ieee" onclick="closeMobile()">IEEE</a>
+  <a href="#speakers" onclick="closeMobile()">Speakers</a>
+  <a href="#timeline" onclick="closeMobile()">Timeline</a>
+  <a href="#judging" onclick="closeMobile()">Judging</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -368,16 +511,16 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
       <p class="gallery-sub">A glimpse into IEEE SB ESPRIM — our events, our team, our moments.</p>
       <div class="gallery-wrap">
         <div class="gallery-track" id="galleryTrack">
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee1.jpg" alt="IEEE Event 1"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee2.jpg" alt="IEEE Event 2"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee3.jpg" alt="IEEE Event 3"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee4.jpg" alt="IEEE Event 4"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee5.jpg" alt="IEEE Event 5"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee6.jpg" alt="IEEE Event 6"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee7.jpg" alt="IEEE Event 7"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee8.jpg" alt="IEEE Event 8"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee9.jpg" alt="IEEE Event 9"></div></div>
-          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee10.jpg" alt="IEEE Event 10"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee1.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee2.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee3.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee4.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee5.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee6.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee7.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee8.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee9.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee10.jpg" alt="IEEE SB ESPRIM" loading="lazy"></div></div>
         </div>
       </div>
       <div class="gallery-nav">
@@ -400,7 +543,8 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
       <div class="speaker-card reveal">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo">
-            <img src="abdelhamid.jpg" alt="Abdelhamid Chaoua">
+            <img src="abdelhamid.jpg" alt="Abdelhamid Chaoua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-placeholder" style="display:none"><span class="initials">AC</span></div>
           </div>
           <div class="speaker-badge"><div class="speaker-name">Abdelhamid Chaoua</div><div class="speaker-company">CEO · CAREDIFY</div></div>
         </div>
@@ -416,7 +560,8 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
       <div class="speaker-card kabil reveal">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo">
-            <img src="kabil.jpg" alt="Kabil Mbarki">
+            <img src="kabil.jpg" alt="Kabil Mbarki" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-placeholder" style="display:none"><span class="initials">KM</span></div>
           </div>
           <div class="speaker-badge"><div class="speaker-name">Kabil Mbarki</div><div class="speaker-company">CEO & Founder · KaTEK</div></div>
         </div>
@@ -536,6 +681,13 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
 </footer>
 
 <script>
+// Hamburger menu
+const hbg=document.getElementById('hamburger');
+const mMenu=document.getElementById('mobileMenu');
+hbg.addEventListener('click',()=>mMenu.classList.toggle('open'));
+function closeMobile(){mMenu.classList.remove('open');}
+document.addEventListener('click',e=>{if(!hbg.contains(e.target)&&!mMenu.contains(e.target))mMenu.classList.remove('open');});
+
 const cursor=document.getElementById('cursor');
 const cursorDot=document.getElementById('cursorDot');
 document.addEventListener('mousemove',e=>{
@@ -564,17 +716,21 @@ function animP(){
   requestAnimationFrame(animP);
 }
 animP();
-// Gallery
+// Gallery — 10 slides, responsive visible count
 const track=document.getElementById('galleryTrack');
 const dotsC=document.getElementById('galDots');
-const total=9;
-const vis=window.innerWidth<=600?2:3;
+const total=10;
+const vis=window.innerWidth<=600?1:window.innerWidth<=900?2:3;
 const maxP=total-vis;
 let cur=0;
 for(let i=0;i<=maxP;i++){const d=document.createElement('div');d.className='gallery-dot'+(i===0?' active':'');d.addEventListener('click',()=>goTo(i));dotsC.appendChild(d);}
 function goTo(n){cur=Math.max(0,Math.min(n,maxP));track.style.transform=`translateX(-${(100/vis)*cur}%)`;dotsC.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));}
 document.getElementById('galPrev').addEventListener('click',()=>goTo(cur-1));
 document.getElementById('galNext').addEventListener('click',()=>goTo(cur+1));
+// Touch swipe support
+let tStart=0;
+track.addEventListener('touchstart',e=>{tStart=e.touches[0].clientX;},{passive:true});
+track.addEventListener('touchend',e=>{const dx=tStart-e.changedTouches[0].clientX;if(Math.abs(dx)>40)dx>0?goTo(cur+1):goTo(cur-1);},{passive:true});
 setInterval(()=>goTo(cur>=maxP?0:cur+1),3500);
 // Reveal
 const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});},{threshold:.08});
