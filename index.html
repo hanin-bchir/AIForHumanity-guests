@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Humanity — Beyond the Visible</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#7c3aed;--purple-light:#a855f7;--pink:#ec4899;--blue:#3b82f6;--blue-light:#60a5fa;--cyan:#06b6d4;--gold:#f59e0b;--dark:#030712;--dark2:#0a0a1a;--dark3:#0f0f2a;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--text:#e2e8f0;--muted:#94a3b8;--gradient:linear-gradient(135deg,var(--purple),var(--pink),var(--blue));}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Raleway',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;cursor:default;}
+.cursor{width:20px;height:20px;border:1.5px solid var(--purple-light);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .15s ease,border-color .2s;transform:translate(-50%,-50%);}
+.cursor-dot{width:4px;height:4px;background:var(--pink);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(3,7,18,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border);}
+.nav-logo{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;font-weight:500;}
+.nav-links a:hover{color:var(--purple-light);}
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 50%,#1a0533 0%,#060616 50%,#030712 100%);}
+#particles-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.portal-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;pointer-events:none;}
+.portal-ring{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;animation:portalSpin linear infinite;}
+.portal-ring:nth-child(1){background:linear-gradient(var(--dark),var(--dark)) padding-box,conic-gradient(from 0deg,var(--purple),var(--pink),var(--blue),var(--purple)) border-box;animation-duration:8s;box-shadow:0 0 60px rgba(124,58,237,.4),inset 0 0 60px rgba(124,58,237,.1);}
+.portal-ring:nth-child(2){inset:20px;background:linear-gradient(var(--dark),var(--dark)) padding-box,conic-gradient(from 180deg,var(--blue),var(--purple),var(--pink),var(--blue)) border-box;animation-duration:12s;animation-direction:reverse;box-shadow:0 0 40px rgba(236,72,153,.3);}
+.portal-ring:nth-child(3){inset:45px;background:linear-gradient(var(--dark),var(--dark)) padding-box,conic-gradient(from 90deg,var(--cyan),var(--purple),var(--pink),var(--cyan)) border-box;animation-duration:6s;box-shadow:0 0 30px rgba(6,182,212,.25);}
+.portal-ring:nth-child(4){inset:75px;border:1px solid rgba(168,85,247,.2);animation-duration:20s;animation-direction:reverse;}
+.portal-ring:nth-child(5){inset:110px;border:1px solid rgba(236,72,153,.15);animation-duration:15s;}
+.portal-glow{position:absolute;inset:150px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.15) 0%,rgba(236,72,153,.08) 50%,transparent 70%);animation:portalPulse 4s ease-in-out infinite;}
+.rune{position:absolute;font-family:'Cinzel',serif;font-size:11px;color:rgba(168,85,247,.5);letter-spacing:3px;text-transform:uppercase;animation:runeFade 3s ease-in-out infinite;}
+.rune:nth-child(1){top:2%;left:50%;transform:translateX(-50%);}
+.rune:nth-child(2){bottom:2%;left:50%;transform:translateX(-50%);animation-delay:1s;}
+.rune:nth-child(3){left:1%;top:50%;transform:translateY(-50%) rotate(-90deg);animation-delay:.5s;}
+.rune:nth-child(4){right:1%;top:50%;transform:translateY(-50%) rotate(90deg);animation-delay:1.5s;}
+@keyframes portalSpin{to{transform:rotate(360deg);}}
+@keyframes portalPulse{0%,100%{transform:scale(1);opacity:.6;}50%{transform:scale(1.1);opacity:1;}}
+@keyframes runeFade{0%,100%{opacity:.3;}50%{opacity:.8;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.geo{position:absolute;border:1px solid rgba(168,85,247,.15);animation:geoFloat linear infinite;pointer-events:none;}
+.geo-1{width:80px;height:80px;top:15%;left:8%;animation-duration:25s;}
+.geo-2{width:50px;height:50px;top:70%;left:5%;border-color:rgba(236,72,153,.12);animation-duration:18s;animation-direction:reverse;}
+.geo-3{width:120px;height:120px;top:20%;right:6%;border-color:rgba(59,130,246,.12);animation-duration:30s;border-radius:50%;}
+.geo-4{width:60px;height:60px;top:65%;right:8%;animation-duration:22s;animation-direction:reverse;}
+.geo-5{width:35px;height:35px;top:40%;left:12%;animation-duration:15s;}
+@keyframes geoFloat{0%{transform:translateY(0) rotate(0deg);}33%{transform:translateY(-20px) rotate(120deg);}66%{transform:translateY(10px) rotate(240deg);}100%{transform:translateY(0) rotate(360deg);}}
+.hero-content{position:relative;z-index:10;text-align:center;padding:2rem;}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:11px;letter-spacing:6px;color:var(--purple-light);text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s ease .3s forwards;}
+.hero-title{font-family:'Cinzel Decorative',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.1;margin-bottom:1rem;background:linear-gradient(135deg,#e0c8ff 0%,#f9a8d4 40%,#93c5fd 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:0;animation:fadeUp 1s ease .5s forwards;}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:clamp(1rem,2.5vw,1.4rem);color:rgba(236,72,153,.9);letter-spacing:8px;text-transform:uppercase;margin-bottom:2.5rem;opacity:0;animation:fadeUp 1s ease .7s forwards;}
+.hero-meta{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease .9s forwards;}
+.hero-meta-item{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.hero-meta-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.hero-meta-value{font-family:'Cinzel',serif;font-size:15px;font-weight:600;color:var(--text);}
+.hero-divider{width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(168,85,247,.4),transparent);align-self:center;}
+section{padding:6rem 2rem;position:relative;}
+.container{max-width:1100px;margin:0 auto;}
+.section-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--purple-light);margin-bottom:.75rem;display:flex;align-items:center;gap:1rem;}
+.section-label::before,.section-label::after{content:'';flex:1;max-width:60px;height:1px;background:linear-gradient(to right,transparent,var(--purple-light));}
+.section-label::after{background:linear-gradient(to left,transparent,var(--purple-light));}
+.section-title{font-family:'Cinzel Decorative',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;margin-bottom:1rem;background:linear-gradient(135deg,#e2e8f0,#c4b5fd,#e2e8f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;}
+.section-desc{font-size:15px;color:var(--muted);line-height:1.8;text-align:center;max-width:680px;margin:0 auto 3.5rem;}
+.sep{width:120px;height:1px;background:linear-gradient(to right,transparent,var(--purple),var(--pink),transparent);margin:0 auto 1.5rem;}
+#about{background:linear-gradient(180deg,var(--dark) 0%,var(--dark3) 100%);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem;}
+.about-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:1.75rem;backdrop-filter:blur(20px);transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.about-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.05),transparent);pointer-events:none;}
+.about-card:hover{border-color:rgba(168,85,247,.35);transform:translateY(-4px);box-shadow:0 20px 60px rgba(124,58,237,.15);}
+.about-card-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(236,72,153,.1));border:1px solid rgba(168,85,247,.2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:18px;}
+.about-card-title{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:1px;color:var(--text);margin-bottom:.6rem;}
+.about-card-body{font-size:13px;color:var(--muted);line-height:1.7;}
+.challenge-box{background:var(--glass);border:1px solid rgba(236,72,153,.2);border-radius:20px;padding:2.5rem;text-align:center;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+.challenge-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--pink),transparent);}
+.challenge-question{font-family:'Cinzel',serif;font-size:clamp(1rem,2vw,1.2rem);font-weight:600;color:var(--text);line-height:1.6;margin-bottom:2rem;}
+.challenge-question em{color:var(--purple-light);font-style:normal;}
+.tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.track{padding:1.25rem;border-radius:12px;border:1px solid var(--glass-border);background:rgba(255,255,255,.02);transition:border-color .3s,box-shadow .3s;}
+.track:hover{border-color:rgba(168,85,247,.3);box-shadow:0 0 30px rgba(124,58,237,.1);}
+.track-num{font-family:'Cinzel Decorative',serif;font-size:22px;font-weight:700;margin-bottom:6px;}
+.track-num.t1{color:var(--purple-light)}.track-num.t2{color:var(--pink)}.track-num.t3{color:var(--blue-light)}
+.track-name{font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;color:var(--text);margin-bottom:6px;}
+.track-desc{font-size:11px;color:var(--muted);line-height:1.6;}
+
+/* IEEE */
+#ieee{background:linear-gradient(180deg,var(--dark3) 0%,#0a0a1a 100%);}
+.ieee-intro{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-bottom:4rem;}
+.ieee-lead{font-size:15px;color:var(--text);line-height:1.8;margin-bottom:1.25rem;}
+.ieee-body{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:1rem;}
+.ieee-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1.5rem;}
+.ieee-stat{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1rem;text-align:center;}
+.ieee-stat-num{font-family:'Cinzel Decorative',serif;font-size:22px;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px;}
+.ieee-stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.ieee-badges{display:flex;flex-direction:column;gap:12px;}
+.ieee-badge{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:1.1rem 1.25rem;display:flex;gap:14px;align-items:flex-start;backdrop-filter:blur(20px);transition:border-color .3s,transform .3s;}
+.ieee-badge:hover{border-color:rgba(168,85,247,.3);transform:translateX(4px);}
+.badge-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(236,72,153,.1));border:1px solid rgba(168,85,247,.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.badge-title{font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.badge-body{font-size:11px;color:var(--muted);line-height:1.55;}
+.gallery-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--purple-light);text-align:center;margin-bottom:.5rem;}
+.gallery-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:1.5rem;}
+.gallery-wrap{position:relative;overflow:hidden;border-radius:20px;border:1px solid var(--glass-border);}
+.gallery-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.gallery-slide{min-width:33.333%;padding:6px;}
+.gallery-photo{width:100%;aspect-ratio:4/3;border-radius:14px;background:var(--glass);border:1px solid var(--glass-border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden;}
+.gallery-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.06),rgba(236,72,153,.03));}
+.gallery-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:14px;}
+.gallery-ph-icon{font-size:26px;opacity:.25;position:relative;z-index:1;}
+.gallery-ph-num{font-family:'Cinzel',serif;font-size:11px;font-weight:600;color:rgba(168,85,247,.45);position:relative;z-index:1;}
+.gallery-ph-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:.5;position:relative;z-index:1;}
+.gallery-nav{display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-top:1.25rem;}
+.gallery-btn{width:40px;height:40px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .3s,background .3s,box-shadow .3s;backdrop-filter:blur(10px);}
+.gallery-btn:hover{border-color:rgba(168,85,247,.4);background:rgba(124,58,237,.15);box-shadow:0 0 20px rgba(124,58,237,.2);}
+.gallery-dots{display:flex;gap:8px;}
+.gallery-dot{width:6px;height:6px;border-radius:50%;background:rgba(168,85,247,.25);cursor:pointer;transition:background .3s,transform .3s;}
+.gallery-dot.active{background:var(--purple-light);transform:scale(1.4);}
+
+/* SPEAKERS */
+#speakers{background:linear-gradient(180deg,#0a0a1a 0%,#0d0d22 100%);}
+.speakers-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.speaker-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:24px;padding:2rem;backdrop-filter:blur(20px);transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;}
+.speaker-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--purple-light),transparent);}
+.speaker-card.kabil::before{background:linear-gradient(to right,transparent,var(--pink),transparent);}
+.speaker-card:hover{transform:translateY(-6px);box-shadow:0 30px 80px rgba(124,58,237,.2);border-color:rgba(168,85,247,.3);}
+.speaker-card.kabil:hover{box-shadow:0 30px 80px rgba(236,72,153,.2);border-color:rgba(236,72,153,.3);}
+.speaker-photo-wrap{position:relative;margin-bottom:1.5rem;display:flex;align-items:flex-end;gap:1rem;}
+.speaker-photo{width:100px;height:100px;border-radius:50%;border:2px solid rgba(168,85,247,.3);background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(168,85,247,.1));display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;position:relative;}
+.speaker-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.photo-placeholder{display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;}
+.initials{font-family:'Cinzel Decorative',serif;font-size:26px;font-weight:700;color:var(--purple-light);}
+.photo-hint{font-family:'Raleway',sans-serif;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:rgba(168,85,247,.6);text-align:center;}
+.speaker-card.kabil .speaker-photo{border-color:rgba(236,72,153,.3);background:linear-gradient(135deg,rgba(236,72,153,.15),rgba(168,85,247,.1));}
+.speaker-card.kabil .initials{color:var(--pink);}
+.speaker-card.kabil .photo-hint{color:rgba(236,72,153,.6);}
+.speaker-badge{display:flex;flex-direction:column;gap:4px;}
+.speaker-name{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:var(--text);}
+.speaker-company{font-size:12px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:600;letter-spacing:.5px;}
+.speaker-role-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem;}
+.role-chip{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid rgba(168,85,247,.3);color:var(--purple-light);background:rgba(124,58,237,.08);}
+.speaker-card.kabil .role-chip{border-color:rgba(236,72,153,.3);color:var(--pink);background:rgba(236,72,153,.08);}
+.speaker-bio{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:1.5rem;}
+.strengths{display:flex;flex-direction:column;gap:8px;}
+.strength{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:rgba(255,255,255,.02);border:1px solid var(--glass-border);border-radius:10px;}
+.strength-dot{width:6px;height:6px;border-radius:50%;background:var(--purple-light);flex-shrink:0;margin-top:5px;}
+.speaker-card.kabil .strength-dot{background:var(--pink);}
+.strength-text{font-size:12px;color:var(--muted);line-height:1.5;}
+.strength-text strong{color:var(--text);font-weight:500;}
+.talk-box{margin-top:1.25rem;padding:14px 16px;background:rgba(124,58,237,.06);border:1px solid rgba(168,85,247,.15);border-radius:12px;}
+.speaker-card.kabil .talk-box{background:rgba(236,72,153,.06);border-color:rgba(236,72,153,.15);}
+.talk-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple-light);margin-bottom:5px;font-weight:600;}
+.speaker-card.kabil .talk-label{color:var(--pink);}
+.talk-title{font-family:'Cinzel',serif;font-size:12px;color:var(--text);line-height:1.5;}
+
+/* CANVAS */
+#canvas-section{background:linear-gradient(180deg,#0d0d22 0%,var(--dark3) 100%);}
+.canvas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.canvas-step{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;text-align:center;backdrop-filter:blur(20px);transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;}
+.canvas-step:hover{transform:translateY(-6px);}
+.canvas-step:nth-child(1):hover{box-shadow:0 20px 60px rgba(124,58,237,.2);border-color:rgba(168,85,247,.3);}
+.canvas-step:nth-child(2):hover{box-shadow:0 20px 60px rgba(236,72,153,.2);border-color:rgba(236,72,153,.3);}
+.canvas-step:nth-child(3):hover{box-shadow:0 20px 60px rgba(59,130,246,.2);border-color:rgba(96,165,250,.3);}
+.canvas-num{font-family:'Cinzel Decorative',serif;font-size:48px;font-weight:900;line-height:1;margin-bottom:1rem;}
+.canvas-num.p{color:var(--purple-light);text-shadow:0 0 30px rgba(168,85,247,.5);}
+.canvas-num.pi{color:var(--pink);text-shadow:0 0 30px rgba(236,72,153,.5);}
+.canvas-num.b{color:var(--blue-light);text-shadow:0 0 30px rgba(96,165,250,.5);}
+.canvas-step-title{font-family:'Cinzel',serif;font-size:14px;font-weight:600;letter-spacing:1px;color:var(--text);margin-bottom:8px;}
+.canvas-step-body{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* TIMELINE */
+#timeline{background:linear-gradient(180deg,var(--dark3) 0%,#0d0d22 100%);}
+.tl-container{position:relative;max-width:800px;margin:0 auto;}
+.tl-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(168,85,247,.4),rgba(236,72,153,.4),transparent);transform:translateX(-50%);}
+.tl-item{display:flex;gap:2rem;align-items:flex-start;margin-bottom:2rem;position:relative;}
+.tl-item:nth-child(odd){flex-direction:row;}
+.tl-item:nth-child(even){flex-direction:row-reverse;}
+.tl-time-side{flex:1;text-align:right;padding-top:6px;}
+.tl-item:nth-child(even) .tl-time-side{text-align:left;}
+.tl-time{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--purple-light);font-weight:600;}
+.tl-duration{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.tl-center{display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding-top:6px;}
+.tl-dot-outer{width:32px;height:32px;border-radius:50%;border:1px solid rgba(168,85,247,.3);display:flex;align-items:center;justify-content:center;background:var(--dark3);position:relative;z-index:2;}
+.tl-dot-inner{width:12px;height:12px;border-radius:50%;}
+.tl-dot-inner.purple{background:var(--purple-light);box-shadow:0 0 12px var(--purple-light);}
+.tl-dot-inner.pink{background:var(--pink);box-shadow:0 0 12px var(--pink);}
+.tl-dot-inner.blue{background:var(--blue-light);box-shadow:0 0 12px var(--blue-light);}
+.tl-dot-inner.gold{background:var(--gold);box-shadow:0 0 12px var(--gold);}
+.tl-dot-inner.cyan{background:var(--cyan);box-shadow:0 0 12px var(--cyan);}
+.tl-content{flex:1;}
+.tl-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:1.1rem 1.25rem;backdrop-filter:blur(20px);transition:border-color .3s,box-shadow .3s;}
+.tl-card:hover{border-color:rgba(168,85,247,.25);box-shadow:0 10px 40px rgba(124,58,237,.1);}
+.tl-card-title{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.tl-card-body{font-size:12px;color:var(--muted);line-height:1.6;}
+.tl-tag{display:inline-block;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:6px;font-weight:600;}
+.tl-tag.speaker{background:rgba(168,85,247,.15);color:var(--purple-light);}
+.tl-tag.workshop{background:rgba(236,72,153,.15);color:var(--pink);}
+.tl-tag.ideation{background:rgba(245,158,11,.15);color:var(--gold);}
+.tl-tag.mentoring{background:rgba(6,182,212,.15);color:var(--cyan);}
+.tl-tag.pitch{background:rgba(59,130,246,.15);color:var(--blue-light);}
+.tl-tag.ceremony{background:rgba(255,255,255,.08);color:var(--text);}
+
+/* JUDGING */
+#judging{background:linear-gradient(180deg,#0d0d22 0%,var(--dark) 100%);}
+.judging-intro-box{background:var(--glass);border:1px solid rgba(168,85,247,.2);border-radius:20px;padding:2rem 2.5rem;margin-bottom:3rem;position:relative;overflow:hidden;backdrop-filter:blur(20px);text-align:center;}
+.judging-intro-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--purple-light),transparent);}
+.judging-intro-text{font-size:14px;color:var(--muted);line-height:1.9;}
+.judging-intro-text em{color:var(--text);font-style:normal;font-weight:500;}
+.criteria-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-bottom:3rem;}
+.crit-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:1.5rem 1rem;text-align:center;backdrop-filter:blur(20px);transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.crit-card:hover{transform:translateY(-5px);}
+.crit-card:nth-child(1):hover{border-color:rgba(168,85,247,.4);box-shadow:0 20px 50px rgba(124,58,237,.2);}
+.crit-card:nth-child(2):hover{border-color:rgba(236,72,153,.4);box-shadow:0 20px 50px rgba(236,72,153,.2);}
+.crit-card:nth-child(3):hover{border-color:rgba(245,158,11,.4);box-shadow:0 20px 50px rgba(245,158,11,.2);}
+.crit-card:nth-child(4):hover{border-color:rgba(96,165,250,.4);box-shadow:0 20px 50px rgba(59,130,246,.2);}
+.crit-card:nth-child(5):hover{border-color:rgba(6,182,212,.4);box-shadow:0 20px 50px rgba(6,182,212,.2);}
+.crit-score{font-family:'Cinzel Decorative',serif;font-size:32px;font-weight:900;line-height:1;margin-bottom:6px;}
+.crit-score.c1{color:var(--purple-light);text-shadow:0 0 20px rgba(168,85,247,.5);}
+.crit-score.c2{color:var(--pink);text-shadow:0 0 20px rgba(236,72,153,.5);}
+.crit-score.c3{color:var(--gold);text-shadow:0 0 20px rgba(245,158,11,.5);}
+.crit-score.c4{color:var(--blue-light);text-shadow:0 0 20px rgba(96,165,250,.5);}
+.crit-score.c5{color:var(--cyan);text-shadow:0 0 20px rgba(6,182,212,.5);}
+.crit-pts{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.crit-name{font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.crit-bar-wrap{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:8px;}
+.crit-bar{height:100%;border-radius:2px;}
+.crit-bar.c1{background:var(--purple-light);width:100%;}
+.crit-bar.c2{background:var(--pink);width:80%;}
+.crit-bar.c3{background:var(--gold);width:80%;}
+.crit-bar.c4{background:var(--blue-light);width:80%;}
+.crit-bar.c5{background:var(--cyan);width:60%;}
+.crit-desc{font-size:10px;color:var(--muted);line-height:1.6;}
+.judging-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2.5rem;}
+.j-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:18px;padding:1.75rem;backdrop-filter:blur(20px);transition:border-color .3s,transform .3s;}
+.j-card:hover{border-color:rgba(168,85,247,.25);transform:translateY(-3px);}
+.j-card-title{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.j-step{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;}
+.j-num{font-family:'Cinzel',serif;font-size:11px;font-weight:600;color:var(--purple-light);flex-shrink:0;width:22px;padding-top:1px;}
+.j-text{font-size:12px;color:var(--muted);line-height:1.6;}
+.j-text strong{color:var(--text);font-weight:500;}
+.decision-box{background:var(--glass);border:1px solid rgba(236,72,153,.18);border-radius:20px;padding:2rem;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+.decision-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--pink),var(--cyan),transparent);}
+.decision-title{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--text);text-align:center;margin-bottom:1.75rem;}
+.decision-flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem;}
+.d-step{background:rgba(255,255,255,.03);border:1px solid var(--glass-border);border-radius:12px;padding:16px 14px;text-align:center;flex:1;min-width:120px;max-width:160px;}
+.d-step-num{font-family:'Cinzel Decorative',serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+.d-step-num.s1{color:var(--purple-light)}.d-step-num.s2{color:var(--pink)}.d-step-num.s3{color:var(--gold)}.d-step-num.s4{color:var(--cyan)}.d-step-num.s5{color:var(--blue-light)}
+.d-step-label{font-family:'Cinzel',serif;font-size:10px;color:var(--text);margin-bottom:4px;font-weight:600;}
+.d-step-body{font-size:9px;color:var(--muted);line-height:1.5;}
+.d-arrow{color:rgba(168,85,247,.4);font-size:18px;display:flex;align-items:center;padding:0 6px;flex-shrink:0;}
+.jury-note{padding:14px 18px;background:rgba(124,58,237,.06);border:1px solid rgba(168,85,247,.12);border-radius:12px;font-size:12px;color:var(--muted);line-height:1.75;text-align:center;}
+.jury-note em{color:var(--purple-light);font-style:normal;}
+
+footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);background:var(--dark);}
+.footer-logo{font-family:'Cinzel',serif;font-size:12px;letter-spacing:4px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;}
+.footer-text{font-size:11px;color:var(--muted);letter-spacing:1px;}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){
+  .about-grid,.speakers-grid,.judging-cols,.ieee-intro{grid-template-columns:1fr;}
+  .tracks,.canvas-grid{grid-template-columns:1fr;}
+  .criteria-grid{grid-template-columns:1fr 1fr;}
+  .tl-item,.tl-item:nth-child(even){flex-direction:column;}
+  .tl-line{display:none;}
+  .tl-time-side,.tl-item:nth-child(even) .tl-time-side{text-align:left;}
+  .tl-center{flex-direction:row;gap:.75rem;align-items:center;}
+  .portal-wrap{width:320px;height:320px;}
+  nav .nav-links{display:none;}
+  .gallery-slide{min-width:50%;}
+  .d-arrow{display:none;}
+  .decision-flow{gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<nav>
+  <div class="nav-logo">AI for Humanity</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#ieee">IEEE</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#judging">Judging</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particles-canvas"></canvas>
+  <div class="geo geo-1"></div><div class="geo geo-2"></div><div class="geo geo-3"></div><div class="geo geo-4"></div><div class="geo geo-5"></div>
+  <div class="portal-wrap">
+    <div class="rune">Sanctum · Invisiblum</div>
+    <div class="rune">Via · Arcanum</div>
+    <div class="rune">░░░░░░░░</div>
+    <div class="rune">░░░░░░░░</div>
+    <div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-ring"></div><div class="portal-ring"></div>
+    <div class="portal-glow"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">IEEE SB ESPRIM · Monastir · 2025</p>
+    <h1 class="hero-title">AI for Humanity</h1>
+    <p class="hero-subtitle">Beyond the Visible</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Date</span><span class="hero-meta-value">April 25, 2025</span></div>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Venue</span><span class="hero-meta-value">ESPRIM, Monastir</span></div>
+      <div class="hero-divider"></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Format</span><span class="hero-meta-value">Full-Day Ideathon</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">The Mission</div>
+    <h2 class="section-title">AI for Everyday Health</h2>
+    <div class="sep"></div>
+    <p class="section-desc">An ideathon where students of all levels explore how AI can help real people notice a health problem before it becomes serious — in a simple, accessible, and human-centered way.</p>
+    <div class="about-grid reveal">
+      <div class="about-card"><div class="about-card-icon">◈</div><div class="about-card-title">Open to All Levels</div><div class="about-card-body">No technical experience required. Beginners focus on the human problem. Advanced students go deeper into how the AI works. Both levels compete equally under the same criteria.</div></div>
+      <div class="about-card"><div class="about-card-icon">◉</div><div class="about-card-title">Real-World Impact</div><div class="about-card-body">Every idea must address a genuine health challenge in Tunisia or the MENA region — grounded in reality. Feasibility is a core judging criterion.</div></div>
+      <div class="about-card"><div class="about-card-icon">◎</div><div class="about-card-title">Industry Mentorship</div><div class="about-card-body">Two CEOs from the health-tech and AI-engineering space will mentor every team, offering direct feedback drawn from real Tunisian startup experience.</div></div>
+      <div class="about-card"><div class="about-card-icon">⬡</div><div class="about-card-title">SIGHT Aligned</div><div class="about-card-body">This event is built on the IEEE SIGHT mission — using engineering as a force for human good. Every idea pitched today is a step toward accessible, intelligent healthcare.</div></div>
+    </div>
+    <div class="challenge-box reveal">
+      <p class="challenge-question">"How can <em>AI</em> help someone notice a health problem <em>before</em> it becomes serious — in a simple, accessible way?"</p>
+      <div class="tracks">
+        <div class="track"><div class="track-num t1">01</div><div class="track-name">Detect</div><div class="track-desc">AI that spots a health signal before the person knows something is wrong. Early warning. Silent monitoring. Prevention.</div></div>
+        <div class="track"><div class="track-num t2">02</div><div class="track-name">Guide</div><div class="track-desc">AI that helps someone manage an existing condition — reminders, coaching, personalized advice, behavior change.</div></div>
+        <div class="track"><div class="track-num t3">03</div><div class="track-name">Access</div><div class="track-desc">AI that brings healthcare to people who can't easily reach it — rural areas, cost barriers, language, disability.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IEEE -->
+<section id="ieee">
+  <div class="container">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">About IEEE</h2>
+    <div class="sep"></div>
+    <p class="section-desc">The world's largest technical professional organization — and the community behind this event.</p>
+    <div class="ieee-intro reveal">
+      <div>
+        <p class="ieee-lead">IEEE — the Institute of Electrical and Electronics Engineers — is the world's largest technical professional organization, dedicated to advancing technology for the benefit of humanity.</p>
+        <p class="ieee-body">Founded in 1963, IEEE brings together engineers, scientists, and professionals from over 160 countries. It publishes more than a third of the world's technical literature in electrical engineering, electronics, and computing, and organizes thousands of conferences and events globally each year.</p>
+        <p class="ieee-body">IEEE SIGHT (Special Interest Group on Humanitarian Technology) is the IEEE branch dedicated to using engineering and technology to address humanitarian challenges — bridging the gap between technical innovation and real-world social impact.</p>
+        <p class="ieee-body">IEEE SB ESPRIM is the Student Branch of IEEE at ESPRIM, Monastir. We organize technical workshops, hackathons, competitions, and community events to connect students with the global IEEE network and inspire a generation of engineers who build for good.</p>
+        <div class="ieee-stats">
+          <div class="ieee-stat"><div class="ieee-stat-num">160+</div><div class="ieee-stat-label">Countries</div></div>
+          <div class="ieee-stat"><div class="ieee-stat-num">400K+</div><div class="ieee-stat-label">Members worldwide</div></div>
+          <div class="ieee-stat"><div class="ieee-stat-num">3,000+</div><div class="ieee-stat-label">Annual conferences</div></div>
+          <div class="ieee-stat"><div class="ieee-stat-num">1963</div><div class="ieee-stat-label">Founded</div></div>
+        </div>
+      </div>
+      <div class="ieee-badges">
+        <div class="ieee-badge"><div class="badge-icon">◈</div><div><div class="badge-title">IEEE SIGHT Tunisia Section</div><div class="badge-body">Our section ambassador network connects Tunisian student branches to humanitarian technology initiatives across North Africa and the MENA region.</div></div></div>
+        <div class="ieee-badge"><div class="badge-icon">◉</div><div><div class="badge-title">IEEE SB ESPRIM</div><div class="badge-body">Our student branch at ESPRIM Monastir drives technical excellence and community impact through events, mentorship, and hands-on projects for all engineering students.</div></div></div>
+        <div class="ieee-badge"><div class="badge-icon">⬡</div><div><div class="badge-title">Our Mission Today</div><div class="badge-body">AI for Humanity is a direct expression of the SIGHT mission — using ideation, mentorship, and industry connection to accelerate human-centered AI in healthcare.</div></div></div>
+        <div class="ieee-badge"><div class="badge-icon">◎</div><div><div class="badge-title">NextVerse Initiative</div><div class="badge-body">A student-led initiative co-founded by IEEE SB ESPRIM members, bridging technical innovation with entrepreneurship and social impact in the Tunisian ecosystem.</div></div></div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="reveal">
+      <div class="gallery-label">Our Community</div>
+      <p class="gallery-sub">A glimpse into IEEE SB ESPRIM — our events, our team, our moments.</p>
+      <div class="gallery-wrap">
+        <div class="gallery-track" id="galleryTrack">
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee1.jpg" alt="IEEE Event 1"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee2.jpg" alt="IEEE Event 2"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee3.jpg" alt="IEEE Event 3"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee4.jpg" alt="IEEE Event 4"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee5.jpg" alt="IEEE Event 5"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee6.jpg" alt="IEEE Event 6"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee7.jpg" alt="IEEE Event 7"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee8.jpg" alt="IEEE Event 8"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee9.jpg" alt="IEEE Event 9"></div></div>
+          <div class="gallery-slide"><div class="gallery-photo"><img src="ieee10.jpg" alt="IEEE Event 10"></div></div>
+        </div>
+      </div>
+      <div class="gallery-nav">
+        <button class="gallery-btn" id="galPrev">&#8592;</button>
+        <div class="gallery-dots" id="galDots"></div>
+        <button class="gallery-btn" id="galNext">&#8594;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section id="speakers">
+  <div class="container">
+    <div class="section-label">The Guides</div>
+    <h2 class="section-title">Invited Guests</h2>
+    <div class="sep"></div>
+    <p class="section-desc">Two CEOs. Two angles on AI and health. One goal: help every team build something that matters.</p>
+    <div class="speakers-grid">
+      <div class="speaker-card reveal">
+        <div class="speaker-photo-wrap">
+          <div class="speaker-photo">
+            <img src="abdelhamid.jpg" alt="Abdelhamid Chaoua">
+          </div>
+          <div class="speaker-badge"><div class="speaker-name">Abdelhamid Chaoua</div><div class="speaker-company">CEO · CAREDIFY</div></div>
+        </div>
+        <div class="speaker-role-chips"><span class="role-chip">Keynote Speaker</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
+        <p class="speaker-bio">CEO of CAREDIFY, a Tunisian startup innovating cardiac care through AI-powered wearable technologies. With a background in medical electronics and computing, and as founder of Medical-PRO, he brings a dual perspective — healthcare and tech-driven entrepreneurship — with a mission to make preventive cardiac diagnostics accessible across the MENA region.</p>
+        <div class="strengths">
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Health + AI bridge:</strong> The only person in the room who has both clinical and AI startup experience — he lives the problem he solves.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>MENA entrepreneur:</strong> Built two companies. Knows what it takes to bring a health product to market in Tunisia.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Youth mentor:</strong> Actively involved in entrepreneurship programs — genuinely invested in the next generation.</div></div>
+        </div>
+        <div class="talk-box"><div class="talk-label">Keynote · 15 min</div><div class="talk-title">"What AI already does in healthcare — and what's still missing"</div></div>
+      </div>
+      <div class="speaker-card kabil reveal">
+        <div class="speaker-photo-wrap">
+          <div class="speaker-photo">
+            <img src="kabil.jpg" alt="Kabil Mbarki">
+          </div>
+          <div class="speaker-badge"><div class="speaker-name">Kabil Mbarki</div><div class="speaker-company">CEO & Founder · KaTEK</div></div>
+        </div>
+        <div class="speaker-role-chips"><span class="role-chip">Tech Speaker</span><span class="role-chip">Workshop Lead</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
+        <p class="speaker-bio">Computer Engineer and CEO of KaTEK, specializing in Robotics, IoT, Embedded Systems, and AI-driven solutions. From mobile development to autonomous vehicles and edge AI, Kabil builds systems that exist in the physical world — not just on slides. His engineering mindset will challenge every team to think beyond the concept and into the actual mechanism of their solution.</p>
+        <div class="strengths">
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Full-stack builder:</strong> Mobile → Embedded → Robotics → AI. Rare end-to-end technical depth from a Tunisian startup.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Real systems:</strong> Autonomous vehicles. IoT devices. Edge AI. He ships things that run in the physical world.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Student-founder model:</strong> Founded KaTEK as an engineer — his path is directly relevant to every participant.</div></div>
+        </div>
+        <div class="talk-box"><div class="talk-label">Tech Talk + Workshop · 55 min</div><div class="talk-title">"From idea to product" + 3-step ideation canvas session</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CANVAS -->
+<section id="canvas-section">
+  <div class="container">
+    <div class="section-label">Your Compass</div>
+    <h2 class="section-title">The Ideation Canvas</h2>
+    <div class="sep"></div>
+    <p class="section-desc">Every team works through this 3-step framework during the workshop. Simple enough for first-year students. Deep enough for final-year engineers.</p>
+    <div class="canvas-grid reveal">
+      <div class="canvas-step"><div class="canvas-num p">01</div><div class="canvas-step-title">The Problem</div><div class="canvas-step-body">Who suffers? What do they miss? Why does the current system fail them? Describe a real person in a real situation in Tunisia or the MENA region.</div></div>
+      <div class="canvas-step"><div class="canvas-num pi">02</div><div class="canvas-step-title">The AI Role</div><div class="canvas-step-body">What does the AI detect, predict, or suggest? In plain language. What data does it use? What decision does it make for the user?</div></div>
+      <div class="canvas-step"><div class="canvas-num b">03</div><div class="canvas-step-title">The Impact</div><div class="canvas-step-body">Who benefits and how? How does their daily life concretely change? Is this realistic to build and deploy? Who would use it?</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label">The Journey</div>
+    <h2 class="section-title">Event Timeline</h2>
+    <div class="sep"></div>
+    <p class="section-desc">April 25, 2025 · ESPRIM, Monastir · Full day from 9:00 AM to 6:00 PM</p>
+    <div class="tl-container reveal">
+      <div class="tl-line"></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:00 – 09:00</div><div class="tl-duration">60 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Setup</div><div class="tl-card-title">Registration & Welcome</div><div class="tl-card-body">Organizers arrive. Welcome desk opens. Teams check in and receive their participant kits including the printed ideation canvas.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:00 – 09:15</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Opening</div><div class="tl-card-title">Opening Ceremony</div><div class="tl-card-body">Welcome address. Theme reveal — "AI for Everyday Health." The three challenge tracks are unveiled. The portal opens.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:15 – 09:30</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag speaker">Keynote</div><div class="tl-card-title">Abdelhamid Chaoua — Keynote Talk</div><div class="tl-card-body">"What AI already does in healthcare — and what's still missing." A real patient story from CAREDIFY. The health gap in MENA. A call to action for the room.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:30 – 09:40</div><div class="tl-duration">10 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag speaker">Tech Talk</div><div class="tl-card-title">Kabil Mbarki — Tech Talk</div><div class="tl-card-body">"From idea to product." How KaTEK goes from concept to a real working system — no jargon, just the thinking process behind building things that actually exist.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:40 – 09:55</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Q&A</div><div class="tl-card-title">Open Q&A — Both Speakers on Stage</div><div class="tl-card-body">Both guests together. Open floor — participants ask anything. Moderated to 3–4 questions. Sets the energy before the workshop.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">10:00 – 10:45</div><div class="tl-duration">45 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag workshop">Workshop</div><div class="tl-card-title">Kabil Mbarki — Ideation Workshop</div><div class="tl-card-body">"From Symptom to System." Teams fill the 3-step canvas. Kabil facilitates. Abdelhamid joins for the final 15 min. 2 teams share their canvas live for rapid feedback.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">11:00 – 12:20</div><div class="tl-duration">80 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ideation">Ideation</div><div class="tl-card-title">Ideation Phase — Teams Work</div><div class="tl-card-body">Teams brainstorm freely. Define the problem, shape the AI solution, map the impact. Both speakers are informally accessible. Milestone check at 30 min.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">12:20 – 13:00</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Break</div><div class="tl-card-title">Lunch & Networking</div><div class="tl-card-body">Both speakers accessible for informal conversation. Encouraged networking between participants, guests, and organizers.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">13:00 – 14:30</div><div class="tl-duration">90 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ideation">Deep Work</div><div class="tl-card-title">Deep Ideation + Pitch Structuring</div><div class="tl-card-body">Teams refine their solution and build their pitch narrative. Define the story, create a simple visual. Ideas first — slides come only at the end of this block.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">14:30 – 15:20</div><div class="tl-duration">50 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner cyan"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag mentoring">Mentoring</div><div class="tl-card-title">Mentoring Rounds — Both Speakers Rotate</div><div class="tl-card-body">Abdelhamid → health-focused teams (clinical validity, patient impact). Kabil → technical teams (data, AI mechanism, system thinking). 5 minutes per team.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:20 – 15:50</div><div class="tl-duration">30 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ideation">Prep</div><div class="tl-card-title">Final Pitch Preparation</div><div class="tl-card-body">Teams finalize slides or boards. Designate the presenter. Internal rehearsal. A countdown timer ensures every team is ready on time.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:50 – 17:00</div><div class="tl-duration">70 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag pitch">Pitches</div><div class="tl-card-title">Pitch Session — Jury Panel</div><div class="tl-card-body">3 min pitch + 2 min Q&A per team. Jury panel: Abdelhamid Chaoua + Kabil Mbarki + 1 organizer. Each juror scores independently on a shared scoresheet.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">17:00 – 17:20</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag pitch">Jury</div><div class="tl-card-title">Jury Deliberation</div><div class="tl-card-body">Closed scoring session. Scores are averaged. Ties broken by jury discussion. Organizers prepare the award display while participants wait.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">17:20 – 18:00</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Closing</div><div class="tl-card-title">Awards & Closing Ceremony</div><div class="tl-card-body">Jury feedback — one sentence per winning team from each juror. Winners announced. Certificates awarded. Group photo. The portal closes.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- JUDGING -->
+<section id="judging">
+  <div class="container">
+    <div class="section-label">The Verdict</div>
+    <h2 class="section-title">Judging & Scoring</h2>
+    <div class="sep"></div>
+    <p class="section-desc">Every pitch is evaluated on five criteria by a panel of three independent jurors. Here is exactly how scoring works and how winners are decided.</p>
+
+    <div class="judging-intro-box reveal">
+      <p class="judging-intro-text">Each team has <em>3 minutes to pitch</em> followed by <em>2 minutes of jury Q&A</em>. Each juror scores <em>independently</em> on a private scoresheet. Scores are averaged only after <em>all pitches are complete</em> — not after each one — to prevent early bias. Total possible score: <em>100 points</em>.</p>
+    </div>
+
+    <div class="criteria-grid reveal">
+      <div class="crit-card"><div class="crit-score c1">25</div><div class="crit-pts">points</div><div class="crit-name">Impact</div><div class="crit-bar-wrap"><div class="crit-bar c1"></div></div><div class="crit-desc">Does this solve a real, significant health problem? Who benefits and how many people? Is the social impact measurable and meaningful for the MENA region?</div></div>
+      <div class="crit-card"><div class="crit-score c2">20</div><div class="crit-pts">points</div><div class="crit-name">AI Relevance</div><div class="crit-bar-wrap"><div class="crit-bar c2"></div></div><div class="crit-desc">Is AI genuinely necessary, or could a simple app do the same? Is the AI role clearly explained? Beginners judged on clarity of concept, not technical depth.</div></div>
+      <div class="crit-card"><div class="crit-score c3">20</div><div class="crit-pts">points</div><div class="crit-name">Feasibility</div><div class="crit-bar-wrap"><div class="crit-bar c3"></div></div><div class="crit-desc">Could this realistically exist? Not "can you build it today" but "is the idea grounded in reality?" Are technical and clinical constraints understood?</div></div>
+      <div class="crit-card"><div class="crit-score c4">20</div><div class="crit-pts">points</div><div class="crit-name">Innovation</div><div class="crit-bar-wrap"><div class="crit-bar c4"></div></div><div class="crit-desc">Is the angle fresh? Does it combine domains unexpectedly? Does it solve a health problem others have overlooked or approached differently?</div></div>
+      <div class="crit-card"><div class="crit-score c5">15</div><div class="crit-pts">points</div><div class="crit-name">Pitch Clarity</div><div class="crit-bar-wrap"><div class="crit-bar c5"></div></div><div class="crit-desc">Is the problem clear in the first 30 seconds? Can a non-technical person understand the solution? Is the 3 minutes well structured?</div></div>
+    </div>
+
+    <div class="judging-cols reveal">
+      <div class="j-card">
+        <div class="j-card-title"><span>◈</span> During the Pitch Session</div>
+        <div class="j-step"><div class="j-num">01</div><div class="j-text">Each team presents for exactly <strong>3 minutes</strong>. A visible countdown timer is shown to the presenter at all times.</div></div>
+        <div class="j-step"><div class="j-num">02</div><div class="j-text">The jury asks questions for <strong>2 minutes</strong>. Questions focus on the weakest or most interesting part of the idea.</div></div>
+        <div class="j-step"><div class="j-num">03</div><div class="j-text">Each juror fills their <strong>private scoresheet immediately</strong> after each team — with zero discussion between jurors until all pitches are done.</div></div>
+        <div class="j-step"><div class="j-num">04</div><div class="j-text">No scores are revealed during the session. Teams do not know their standing until the deliberation is complete.</div></div>
+      </div>
+      <div class="j-card">
+        <div class="j-card-title"><span>◉</span> Juror Responsibilities</div>
+        <div class="j-step"><div class="j-num" style="color:#0F6E56">AC</div><div class="j-text"><strong>Abdelhamid Chaoua</strong> leads on Impact — evaluates whether the health problem is real, the patient journey is understood, and the outcome is clinically meaningful.</div></div>
+        <div class="j-step"><div class="j-num" style="color:#854F0B">KM</div><div class="j-text"><strong>Kabil Mbarki</strong> leads on AI Relevance & Feasibility — evaluates whether the AI mechanism is sound and whether the solution could realistically be built and deployed.</div></div>
+        <div class="j-step"><div class="j-num" style="color:var(--purple-light)">OR</div><div class="j-text"><strong>Organizer juror</strong> leads on Clarity & Innovation — evaluates communication quality and the originality of the idea's angle.</div></div>
+        <div class="j-step"><div class="j-num">⚠</div><div class="j-text">All three jurors score <strong>all five criteria</strong> independently. Lead roles apply only during deliberation discussion, not to scoring exclusivity.</div></div>
+      </div>
+    </div>
+
+    <div class="decision-box reveal">
+      <div class="decision-title">How the Final Decision is Made — Step by Step</div>
+      <div class="decision-flow">
+        <div class="d-step"><div class="d-step-num s1">01</div><div class="d-step-label">All pitches done</div><div class="d-step-body">Jury closes the pitch session. Participants wait while jury enters deliberation.</div></div>
+        <div class="d-arrow">→</div>
+        <div class="d-step"><div class="d-step-num s2">02</div><div class="d-step-label">Scores compiled</div><div class="d-step-body">Organizer collects all 3 scoresheets. Calculates average score per team across all jurors.</div></div>
+        <div class="d-arrow">→</div>
+        <div class="d-step"><div class="d-step-num s3">03</div><div class="d-step-label">Ranking built</div><div class="d-step-body">Teams ranked by total average out of 100. Top 3 identified. Any ties are noted.</div></div>
+        <div class="d-arrow">→</div>
+        <div class="d-step"><div class="d-step-num s4">04</div><div class="d-step-label">Tie-breaking</div><div class="d-step-body">Equal scores? Jury discusses and breaks ties using Impact first, then AI Relevance.</div></div>
+        <div class="d-arrow">→</div>
+        <div class="d-step"><div class="d-step-num s5">05</div><div class="d-step-label">Winners confirmed</div><div class="d-step-body">All 3 jurors agree on the final ranking before returning. Results announced with brief feedback.</div></div>
+      </div>
+      <div class="jury-note">A brilliant idea clearly explained by a first-year student should score higher than a complex system poorly communicated by a final-year one. <em>Clarity and human impact always win over technical complexity.</em></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AI for Humanity · Beyond the Visible</div>
+  <p class="footer-text">IEEE SB ESPRIM · Monastir, Tunisia · April 25, 2025</p>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor');
+const cursorDot=document.getElementById('cursorDot');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
+  cursorDot.style.left=e.clientX+'px';cursorDot.style.top=e.clientY+'px';
+});
+document.querySelectorAll('a,button,.speaker-card,.about-card,.crit-card,.track,.ieee-badge').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)';cursor.style.borderColor='var(--pink)';});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';cursor.style.borderColor='var(--purple-light)';});
+});
+const canvas=document.getElementById('particles-canvas');
+const ctx=canvas.getContext('2d');
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+class Particle{
+  constructor(){this.reset();}
+  reset(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4;this.r=Math.random()*1.5+.3;this.alpha=Math.random()*.5+.1;const c=[[168,85,247],[236,72,153],[59,130,246],[6,182,212]];this.color=c[Math.floor(Math.random()*c.length)];}
+  update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.reset();}
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(${this.color},${this.alpha})`;ctx.fill();}
+}
+const particles=[];for(let i=0;i<120;i++)particles.push(new Particle());
+function animP(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{p.update();p.draw();});
+  for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<90){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(168,85,247,${.08*(1-d/90)})`;ctx.lineWidth=.5;ctx.stroke();}}
+  requestAnimationFrame(animP);
+}
+animP();
+// Gallery
+const track=document.getElementById('galleryTrack');
+const dotsC=document.getElementById('galDots');
+const total=9;
+const vis=window.innerWidth<=600?2:3;
+const maxP=total-vis;
+let cur=0;
+for(let i=0;i<=maxP;i++){const d=document.createElement('div');d.className='gallery-dot'+(i===0?' active':'');d.addEventListener('click',()=>goTo(i));dotsC.appendChild(d);}
+function goTo(n){cur=Math.max(0,Math.min(n,maxP));track.style.transform=`translateX(-${(100/vis)*cur}%)`;dotsC.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));}
+document.getElementById('galPrev').addEventListener('click',()=>goTo(cur-1));
+document.getElementById('galNext').addEventListener('click',()=>goTo(cur+1));
+setInterval(()=>goTo(cur>=maxP?0:cur+1),3500);
+// Reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
