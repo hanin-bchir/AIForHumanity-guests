@@ -193,6 +193,7 @@ section{padding:6rem 2rem;position:relative;}
 .tl-card:hover{border-color:rgba(168,85,247,.25);box-shadow:0 10px 40px rgba(124,58,237,.1);}
 .tl-card-title{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
 .tl-card-body{font-size:12px;color:var(--muted);line-height:1.6;}
+.tl-time-inline{display:none;}
 .tl-tag{display:inline-block;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:6px;font-weight:600;}
 .tl-tag.speaker{background:rgba(168,85,247,.15);color:var(--purple-light);}
 .tl-tag.workshop{background:rgba(236,72,153,.15);color:var(--pink);}
@@ -359,15 +360,19 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
   .canvas-step-title{font-size:13px;}
   .canvas-step-body{font-size:11px;}
 
-  /* Timeline — single column on mobile */
+  /* Timeline — single column, time shown INSIDE card on mobile */
   .tl-container{padding-left:0;}
-  .tl-line{display:none;}
-  .tl-item,.tl-item:nth-child(even){flex-direction:row;gap:1rem;margin-bottom:1.25rem;}
-  .tl-time-side,.tl-item:nth-child(even) .tl-time-side{display:none;}
-  .tl-center{flex-direction:column;align-items:center;flex-shrink:0;padding-top:4px;}
-  .tl-dot-outer{width:26px;height:26px;}
-  .tl-dot-inner{width:10px;height:10px;}
+  .tl-line{left:16px;transform:none;}
+  .tl-item,.tl-item:nth-child(even){flex-direction:row;gap:.85rem;margin-bottom:1.1rem;}
+  .tl-time-side{display:none;}
+  .tl-center{flex-direction:column;align-items:center;flex-shrink:0;padding-top:3px;}
+  .tl-dot-outer{width:34px;height:34px;}
+  .tl-dot-inner{width:11px;height:11px;}
   .tl-card{padding:.9rem 1rem;border-radius:12px;}
+  .tl-time-inline{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+  .tl-time-inline .tl-time{font-size:11px;letter-spacing:.5px;}
+  .tl-time-inline .tl-duration{font-size:9px;}
+  .tl-time-inline{display:flex;}
   .tl-card-title{font-size:12px;}
   .tl-card-body{font-size:11px;}
   .tl-tag{font-size:8px;padding:2px 6px;}
@@ -543,36 +548,36 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
       <div class="speaker-card reveal">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo">
-            <img src="abdelhamid.jpg" alt="Abdelhamid Chaoua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <img src="abdelhamid.jpg" alt="Mr. Abdelhamid Chaoua" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="photo-placeholder" style="display:none"><span class="initials">AC</span></div>
           </div>
-          <div class="speaker-badge"><div class="speaker-name">Abdelhamid Chaoua</div><div class="speaker-company">CEO · CAREDIFY</div></div>
+          <div class="speaker-badge"><div class="speaker-name">Mr. Abdelhamid Chaoua</div><div class="speaker-company">CEO · CAREDIFY</div></div>
         </div>
-        <div class="speaker-role-chips"><span class="role-chip">Keynote Speaker</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
+        <div class="speaker-role-chips"><span class="role-chip">Speaker</span><span class="role-chip">Workshop Co-Facilitator</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
         <p class="speaker-bio">CEO of CAREDIFY, a Tunisian startup innovating cardiac care through AI-powered wearable technologies. With a background in medical electronics and computing, and as founder of Medical-PRO, he brings a dual perspective — healthcare and tech-driven entrepreneurship — with a mission to make preventive cardiac diagnostics accessible across the MENA region.</p>
         <div class="strengths">
           <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Health + AI bridge:</strong> The only person in the room who has both clinical and AI startup experience — he lives the problem he solves.</div></div>
           <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>MENA entrepreneur:</strong> Built two companies. Knows what it takes to bring a health product to market in Tunisia.</div></div>
           <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Youth mentor:</strong> Actively involved in entrepreneurship programs — genuinely invested in the next generation.</div></div>
         </div>
-        <div class="talk-box"><div class="talk-label">Keynote · 15 min</div><div class="talk-title">"What AI already does in healthcare — and what's still missing"</div></div>
+        <div class="talk-box"><div class="talk-label">Talk · 20 min</div><div class="talk-title">"What AI already does in healthcare — and what's still missing"</div></div>
       </div>
       <div class="speaker-card kabil reveal">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo">
-            <img src="kabil.jpg" alt="Kabil Mbarki" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <img src="kabil.jpg" alt="Mr. Kabil Mbarki" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="photo-placeholder" style="display:none"><span class="initials">KM</span></div>
           </div>
-          <div class="speaker-badge"><div class="speaker-name">Kabil Mbarki</div><div class="speaker-company">CEO & Founder · KaTEK</div></div>
+          <div class="speaker-badge"><div class="speaker-name">Mr. Kabil Mbarki</div><div class="speaker-company">CEO & Founder · KaTEK</div></div>
         </div>
-        <div class="speaker-role-chips"><span class="role-chip">Tech Speaker</span><span class="role-chip">Workshop Lead</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
-        <p class="speaker-bio">Computer Engineer and CEO of KaTEK, specializing in Robotics, IoT, Embedded Systems, and AI-driven solutions. From mobile development to autonomous vehicles and edge AI, Kabil builds systems that exist in the physical world — not just on slides. His engineering mindset will challenge every team to think beyond the concept and into the actual mechanism of their solution.</p>
+        <div class="speaker-role-chips"><span class="role-chip">Speaker</span><span class="role-chip">Workshop Co-Facilitator</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
+        <p class="speaker-bio">Computer Engineer and CEO of KaTEK, specializing in Robotics, IoT, Embedded Systems, and AI-driven solutions. From mobile development to autonomous vehicles and edge AI, Mr. Mbarki builds systems that exist in the physical world — not just on slides. His engineering mindset will challenge every team to think beyond the concept and into the actual mechanism of their solution.</p>
         <div class="strengths">
           <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Full-stack builder:</strong> Mobile → Embedded → Robotics → AI. Rare end-to-end technical depth from a Tunisian startup.</div></div>
           <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Real systems:</strong> Autonomous vehicles. IoT devices. Edge AI. He ships things that run in the physical world.</div></div>
           <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Student-founder model:</strong> Founded KaTEK as an engineer — his path is directly relevant to every participant.</div></div>
         </div>
-        <div class="talk-box"><div class="talk-label">Tech Talk + Workshop · 55 min</div><div class="talk-title">"From idea to product" + 3-step ideation canvas session</div></div>
+        <div class="talk-box"><div class="talk-label">Talk · 20 min</div><div class="talk-title">"From idea to product — building AI systems that exist in the real world"</div></div>
       </div>
     </div>
   </div>
@@ -599,23 +604,36 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
     <div class="section-label">The Journey</div>
     <h2 class="section-title">Event Timeline</h2>
     <div class="sep"></div>
-    <p class="section-desc">April 25, 2025 · ESPRIM, Monastir · Full day from 9:00 AM to 6:00 PM</p>
+    <p class="section-desc">April 25, 2025 · ESPRIM, Monastir · Full day starting at 8:00 AM</p>
     <div class="tl-container reveal">
       <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:00 – 09:00</div><div class="tl-duration">60 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Setup</div><div class="tl-card-title">Registration & Welcome</div><div class="tl-card-body">Organizers arrive. Welcome desk opens. Teams check in and receive their participant kits including the printed ideation canvas.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:00 – 09:15</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Opening</div><div class="tl-card-title">Opening Ceremony</div><div class="tl-card-body">Welcome address. Theme reveal — "AI for Everyday Health." The three challenge tracks are unveiled. The portal opens.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:15 – 09:30</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag speaker">Keynote</div><div class="tl-card-title">Abdelhamid Chaoua — Keynote Talk</div><div class="tl-card-body">"What AI already does in healthcare — and what's still missing." A real patient story from CAREDIFY. The health gap in MENA. A call to action for the room.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:30 – 09:40</div><div class="tl-duration">10 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag speaker">Tech Talk</div><div class="tl-card-title">Kabil Mbarki — Tech Talk</div><div class="tl-card-body">"From idea to product." How KaTEK goes from concept to a real working system — no jargon, just the thinking process behind building things that actually exist.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:40 – 09:55</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Q&A</div><div class="tl-card-title">Open Q&A — Both Speakers on Stage</div><div class="tl-card-body">Both guests together. Open floor — participants ask anything. Moderated to 3–4 questions. Sets the energy before the workshop.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">10:00 – 10:45</div><div class="tl-duration">45 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag workshop">Workshop</div><div class="tl-card-title">Kabil Mbarki — Ideation Workshop</div><div class="tl-card-body">"From Symptom to System." Teams fill the 3-step canvas. Kabil facilitates. Abdelhamid joins for the final 15 min. 2 teams share their canvas live for rapid feedback.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">11:00 – 12:20</div><div class="tl-duration">80 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ideation">Ideation</div><div class="tl-card-title">Ideation Phase — Teams Work</div><div class="tl-card-body">Teams brainstorm freely. Define the problem, shape the AI solution, map the impact. Both speakers are informally accessible. Milestone check at 30 min.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">12:20 – 13:00</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Break</div><div class="tl-card-title">Lunch & Networking</div><div class="tl-card-body">Both speakers accessible for informal conversation. Encouraged networking between participants, guests, and organizers.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">13:00 – 14:30</div><div class="tl-duration">90 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ideation">Deep Work</div><div class="tl-card-title">Deep Ideation + Pitch Structuring</div><div class="tl-card-body">Teams refine their solution and build their pitch narrative. Define the story, create a simple visual. Ideas first — slides come only at the end of this block.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">14:30 – 15:20</div><div class="tl-duration">50 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner cyan"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag mentoring">Mentoring</div><div class="tl-card-title">Mentoring Rounds — Both Speakers Rotate</div><div class="tl-card-body">Abdelhamid → health-focused teams (clinical validity, patient impact). Kabil → technical teams (data, AI mechanism, system thinking). 5 minutes per team.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:20 – 15:50</div><div class="tl-duration">30 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ideation">Prep</div><div class="tl-card-title">Final Pitch Preparation</div><div class="tl-card-body">Teams finalize slides or boards. Designate the presenter. Internal rehearsal. A countdown timer ensures every team is ready on time.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:50 – 17:00</div><div class="tl-duration">70 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag pitch">Pitches</div><div class="tl-card-title">Pitch Session — Jury Panel</div><div class="tl-card-body">3 min pitch + 2 min Q&A per team. Jury panel: Abdelhamid Chaoua + Kabil Mbarki + 1 organizer. Each juror scores independently on a shared scoresheet.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">17:00 – 17:20</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag pitch">Jury</div><div class="tl-card-title">Jury Deliberation</div><div class="tl-card-body">Closed scoring session. Scores are averaged. Ties broken by jury discussion. Organizers prepare the award display while participants wait.</div></div></div></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">17:20 – 18:00</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-tag ceremony">Closing</div><div class="tl-card-title">Awards & Closing Ceremony</div><div class="tl-card-body">Jury feedback — one sentence per winning team from each juror. Winners announced. Certificates awarded. Group photo. The portal closes.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:00 – 08:15</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:00 – 08:15</div><div class="tl-duration">· 15 min</div></div><div class="tl-tag ceremony">Setup</div><div class="tl-card-title">Registration & Welcome</div><div class="tl-card-body">Organizers arrive. Welcome desk opens. Teams check in and receive their participant kits including the printed ideation canvas.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:15 – 08:30</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:15 – 08:30</div><div class="tl-duration">· 15 min</div></div><div class="tl-tag ceremony">Opening</div><div class="tl-card-title">Opening Ceremony</div><div class="tl-card-body">Welcome address. Theme reveal — "AI for Everyday Health." The three challenge tracks are unveiled. The portal opens.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:30 – 08:50</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:30 – 08:50</div><div class="tl-duration">· 20 min</div></div><div class="tl-tag speaker">Talk</div><div class="tl-card-title">Mr. Abdelhamid Chaoua — Keynote Talk</div><div class="tl-card-body">"What AI already does in healthcare — and what's still missing." A real patient story from CAREDIFY. The health gap in MENA. A call to action for the room.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:50 – 09:10</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:50 – 09:10</div><div class="tl-duration">· 20 min</div></div><div class="tl-tag speaker">Talk</div><div class="tl-card-title">Mr. Kabil Mbarki — Tech Talk</div><div class="tl-card-body">"From idea to product." How KaTEK goes from concept to a real working system — no jargon, just the thinking process behind building things that actually exist.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:10 – 09:25</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">09:10 – 09:25</div><div class="tl-duration">· 15 min</div></div><div class="tl-tag ceremony">Q&A</div><div class="tl-card-title">Open Q&A — Both Guests on Stage</div><div class="tl-card-body">Mr. Abdelhamid Chaoua & Mr. Kabil Mbarki together. Open floor — participants ask anything. Moderated to 3–4 questions. Sets the energy before the workshop.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:30 – 10:15</div><div class="tl-duration">45 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">09:30 – 10:15</div><div class="tl-duration">· 45 min</div></div><div class="tl-tag workshop">Workshop</div><div class="tl-card-title">Joint Workshop — Mr. Chaoua & Mr. Mbarki</div><div class="tl-card-body">Both guests co-facilitate: "From Symptom to System." Teams fill the 3-step canvas together. Mr. Chaoua covers the health & impact layer. Mr. Mbarki covers the AI & technical layer. 2 teams share their canvas live for rapid feedback from both.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">10:30 – 12:00</div><div class="tl-duration">90 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">10:30 – 12:00</div><div class="tl-duration">· 90 min</div></div><div class="tl-tag ideation">Ideation</div><div class="tl-card-title">Ideation Phase — Teams Work</div><div class="tl-card-body">Teams brainstorm freely. Define the problem, shape the AI solution, map the impact. Both guests are informally accessible. Milestone check at 30 min.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">12:00 – 12:40</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">12:00 – 12:40</div><div class="tl-duration">· 40 min</div></div><div class="tl-tag ceremony">Break</div><div class="tl-card-title">Lunch & Networking</div><div class="tl-card-body">Both guests accessible for informal conversation. Encouraged networking between participants, guests, and organizers.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">12:40 – 14:10</div><div class="tl-duration">90 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">12:40 – 14:10</div><div class="tl-duration">· 90 min</div></div><div class="tl-tag ideation">Deep Work</div><div class="tl-card-title">Deep Ideation + Pitch Structuring</div><div class="tl-card-body">Teams refine their solution and build their pitch narrative. Define the story, create a simple visual. Ideas first — slides come only at the end of this block.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">14:10 – 15:00</div><div class="tl-duration">50 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner cyan"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">14:10 – 15:00</div><div class="tl-duration">· 50 min</div></div><div class="tl-tag mentoring">Mentoring</div><div class="tl-card-title">Mentoring Rounds — Both Guests Rotate</div><div class="tl-card-body">Mr. Chaoua → health-focused teams (clinical validity, patient impact). Mr. Mbarki → technical teams (data, AI mechanism, system thinking). 5 minutes per team.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:00 – 15:30</div><div class="tl-duration">30 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">15:00 – 15:30</div><div class="tl-duration">· 30 min</div></div><div class="tl-tag ideation">Prep</div><div class="tl-card-title">Final Pitch Preparation</div><div class="tl-card-body">Teams finalize slides or boards. Designate the presenter. Internal rehearsal. A countdown timer ensures every team is ready on time.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:30 – 16:20</div><div class="tl-duration">50 min max</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">15:30 – 16:20</div><div class="tl-duration">· 50 min max</div></div><div class="tl-tag pitch">Pitches</div><div class="tl-card-title">Pitch Session — Jury Panel</div><div class="tl-card-body">5 min pitch + 3 to 5 min Q&A per team · max 50 min total. Jury: Mr. Chaoua + Mr. Mbarki + 1 organizer. Each juror scores independently on a shared scoresheet.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">16:20 – 16:40</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">16:20 – 16:40</div><div class="tl-duration">· 20 min</div></div><div class="tl-tag pitch">Jury</div><div class="tl-card-title">Jury Deliberation</div><div class="tl-card-body">Closed scoring session. Scores are averaged. Ties broken by jury discussion. Organizers prepare the award display while participants wait.</div></div></div></div>
+
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">16:40 – 17:20</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">16:40 – 17:20</div><div class="tl-duration">· 40 min</div></div><div class="tl-tag ceremony">Closing</div><div class="tl-card-title">Awards & Closing Ceremony</div><div class="tl-card-body">Jury feedback — one sentence per winning team from each juror. Winners announced. Certificates awarded. Group photo. The portal closes.</div></div></div></div>
     </div>
   </div>
 </section>
@@ -629,7 +647,7 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
     <p class="section-desc">Every pitch is evaluated on five criteria by a panel of three independent jurors. Here is exactly how scoring works and how winners are decided.</p>
 
     <div class="judging-intro-box reveal">
-      <p class="judging-intro-text">Each team has <em>3 minutes to pitch</em> followed by <em>2 minutes of jury Q&A</em>. Each juror scores <em>independently</em> on a private scoresheet. Scores are averaged only after <em>all pitches are complete</em> — not after each one — to prevent early bias. Total possible score: <em>100 points</em>.</p>
+      <p class="judging-intro-text">Each team has <em>5 minutes to pitch</em> followed by <em>3 to 5 minutes of jury Q&A</em>. The full pitch session is capped at <em>50 minutes maximum</em>. Each juror scores <em>independently</em> on a private scoresheet. Scores are averaged only after <em>all pitches are complete</em> — not after each one — to prevent early bias. Total possible score: <em>100 points</em>.</p>
     </div>
 
     <div class="criteria-grid reveal">
@@ -643,15 +661,15 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
     <div class="judging-cols reveal">
       <div class="j-card">
         <div class="j-card-title"><span>◈</span> During the Pitch Session</div>
-        <div class="j-step"><div class="j-num">01</div><div class="j-text">Each team presents for exactly <strong>3 minutes</strong>. A visible countdown timer is shown to the presenter at all times.</div></div>
-        <div class="j-step"><div class="j-num">02</div><div class="j-text">The jury asks questions for <strong>2 minutes</strong>. Questions focus on the weakest or most interesting part of the idea.</div></div>
-        <div class="j-step"><div class="j-num">03</div><div class="j-text">Each juror fills their <strong>private scoresheet immediately</strong> after each team — with zero discussion between jurors until all pitches are done.</div></div>
-        <div class="j-step"><div class="j-num">04</div><div class="j-text">No scores are revealed during the session. Teams do not know their standing until the deliberation is complete.</div></div>
+        <div class="j-step"><div class="j-num">01</div><div class="j-text">Each team presents for exactly <strong>5 minutes</strong>. A visible countdown timer is shown to the presenter at all times.</div></div>
+        <div class="j-step"><div class="j-num">02</div><div class="j-text">The jury asks questions for <strong>3 to 5 minutes</strong>. Questions focus on the weakest or most interesting part of the idea.</div></div>
+        <div class="j-step"><div class="j-num">03</div><div class="j-text">The full pitch session is <strong>capped at 50 minutes</strong> regardless of team count.</div></div>
+        <div class="j-step"><div class="j-num">04</div><div class="j-text">Each juror fills their <strong>private scoresheet immediately</strong> after each team — with zero discussion between jurors until all pitches are done.</div></div>
       </div>
       <div class="j-card">
         <div class="j-card-title"><span>◉</span> Juror Responsibilities</div>
-        <div class="j-step"><div class="j-num" style="color:#0F6E56">AC</div><div class="j-text"><strong>Abdelhamid Chaoua</strong> leads on Impact — evaluates whether the health problem is real, the patient journey is understood, and the outcome is clinically meaningful.</div></div>
-        <div class="j-step"><div class="j-num" style="color:#854F0B">KM</div><div class="j-text"><strong>Kabil Mbarki</strong> leads on AI Relevance & Feasibility — evaluates whether the AI mechanism is sound and whether the solution could realistically be built and deployed.</div></div>
+        <div class="j-step"><div class="j-num" style="color:#0F6E56">AC</div><div class="j-text"><strong>Mr. Abdelhamid Chaoua</strong> leads on Impact — evaluates whether the health problem is real, the patient journey is understood, and the outcome is clinically meaningful.</div></div>
+        <div class="j-step"><div class="j-num" style="color:#854F0B">KM</div><div class="j-text"><strong>Mr. Kabil Mbarki</strong> leads on AI Relevance & Feasibility — evaluates whether the AI mechanism is sound and whether the solution could realistically be built and deployed.</div></div>
         <div class="j-step"><div class="j-num" style="color:var(--purple-light)">OR</div><div class="j-text"><strong>Organizer juror</strong> leads on Clarity & Innovation — evaluates communication quality and the originality of the idea's angle.</div></div>
         <div class="j-step"><div class="j-num">⚠</div><div class="j-text">All three jurors score <strong>all five criteria</strong> independently. Lead roles apply only during deliberation discussion, not to scoring exclusivity.</div></div>
       </div>
