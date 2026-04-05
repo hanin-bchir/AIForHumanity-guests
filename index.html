@@ -120,7 +120,7 @@ section{padding:6rem 2rem;position:relative;}
 
 /* SPEAKERS */
 #speakers{background:linear-gradient(180deg,#0a0a1a 0%,#0d0d22 100%);}
-.speakers-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.speakers-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;}
 .speaker-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:24px;padding:2rem;backdrop-filter:blur(20px);transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;}
 .speaker-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--purple-light),transparent);}
 .speaker-card.kabil::before{background:linear-gradient(to right,transparent,var(--pink),transparent);}
@@ -151,8 +151,16 @@ section{padding:6rem 2rem;position:relative;}
 .talk-box{margin-top:1.25rem;padding:14px 16px;background:rgba(124,58,237,.06);border:1px solid rgba(168,85,247,.15);border-radius:12px;}
 .speaker-card.kabil .talk-box{background:rgba(236,72,153,.06);border-color:rgba(236,72,153,.15);}
 .talk-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple-light);margin-bottom:5px;font-weight:600;}
-.speaker-card.kabil .talk-label{color:var(--pink);}
-.talk-title{font-family:'Cinzel',serif;font-size:12px;color:var(--text);line-height:1.5;}
+.speaker-card.sawsen::before{background:linear-gradient(to right,transparent,var(--cyan),transparent);}
+.speaker-card.sawsen:hover{box-shadow:0 30px 80px rgba(6,182,212,.2);border-color:rgba(6,182,212,.3);}
+.speaker-card.sawsen .speaker-photo{border-color:rgba(6,182,212,.35);background:linear-gradient(135deg,rgba(6,182,212,.15),rgba(245,158,11,.1));}
+.speaker-card.sawsen .initials{color:var(--cyan);}
+.speaker-card.sawsen .photo-hint{color:rgba(6,182,212,.6);}
+.speaker-card.sawsen .role-chip{border-color:rgba(6,182,212,.3);color:var(--cyan);background:rgba(6,182,212,.08);}
+.speaker-card.sawsen .strength-dot{background:var(--cyan);}
+.speaker-card.sawsen .talk-box{background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.15);}
+.speaker-card.sawsen .talk-label{color:var(--cyan);}
+.speaker-card.sawsen .speaker-company{background:linear-gradient(135deg,var(--cyan),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
 /* CANVAS */
 #canvas-section{background:linear-gradient(180deg,#0d0d22 0%,var(--dark3) 100%);}
@@ -260,7 +268,8 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
 .reveal.visible{opacity:1;transform:translateY(0);}
 /* ── TABLET ── */
 @media(max-width:900px){
-  .about-grid,.speakers-grid,.judging-cols,.ieee-intro{grid-template-columns:1fr;}
+  .about-grid,.judging-cols,.ieee-intro{grid-template-columns:1fr;}
+  .speakers-grid{grid-template-columns:1fr 1fr;}
   .tracks{grid-template-columns:1fr;}
   .canvas-grid{grid-template-columns:1fr 1fr;}
   .criteria-grid{grid-template-columns:1fr 1fr;}
@@ -417,6 +426,7 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
     <li><a href="#about">About</a></li>
     <li><a href="#ieee">IEEE</a></li>
     <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#workshop22">April 22</a></li>
     <li><a href="#timeline">Timeline</a></li>
     <li><a href="#judging">Judging</a></li>
   </ul>
@@ -428,6 +438,7 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#ieee" onclick="closeMobile()">IEEE</a>
   <a href="#speakers" onclick="closeMobile()">Speakers</a>
+  <a href="#workshop22" onclick="closeMobile()">April 22</a>
   <a href="#timeline" onclick="closeMobile()">Timeline</a>
   <a href="#judging" onclick="closeMobile()">Judging</a>
 </div>
@@ -553,7 +564,7 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
     <div class="section-label">The Guides</div>
     <h2 class="section-title">Invited Guests</h2>
     <div class="sep"></div>
-    <p class="section-desc">Two CEOs. Two angles on AI and health. One goal: help every team build something that matters.</p>
+    <p class="section-desc">Three guests. Three angles on AI, health, and communication. All here to help every team build something that matters.</p>
     <div class="speakers-grid">
       <div class="speaker-card reveal">
         <div class="speaker-photo-wrap">
@@ -564,14 +575,15 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
           <div class="speaker-badge"><div class="speaker-name">Mr. Abdelhamid Chaoua</div><div class="speaker-company">CEO · CAREDIFY</div></div>
         </div>
         <div class="speaker-role-chips"><span class="role-chip">Speaker</span><span class="role-chip">Workshop Co-Facilitator</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
-        <p class="speaker-bio">CEO of CAREDIFY, a Tunisian startup innovating cardiac care through AI-powered wearable technologies. With a background in medical electronics and computing, and as founder of Medical-PRO, he brings a dual perspective — healthcare and tech-driven entrepreneurship — with a mission to make preventive cardiac diagnostics accessible across the MENA region.</p>
+        <p class="speaker-bio">CEO of CAREDIFY, a Tunisian startup innovating cardiac care through AI-powered wearable technologies. With a background in medical electronics and computing, and as founder of Medical-PRO, he brings a dual perspective — healthcare and tech-driven entrepreneurship — with a mission to make preventive care accessible across the MENA region.</p>
         <div class="strengths">
-          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Health + AI bridge:</strong> The only person in the room who has both clinical and AI startup experience — he lives the problem he solves.</div></div>
-          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>MENA entrepreneur:</strong> Built two companies. Knows what it takes to bring a health product to market in Tunisia.</div></div>
-          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Youth mentor:</strong> Actively involved in entrepreneurship programs — genuinely invested in the next generation.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Health + AI bridge:</strong> Clinical startup experience — he lives the problem he solves.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>MENA entrepreneur:</strong> Built two companies. Knows what it takes to bring a health product to market.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Youth mentor:</strong> Actively invested in the next generation of builders.</div></div>
         </div>
-        <div class="talk-box"><div class="talk-label">Talk · 20 min</div><div class="talk-title">"What AI already does in healthcare — and what's still missing"</div></div>
+        <div class="talk-box"><div class="talk-label">Talk · 20 min · April 25</div><div class="talk-title">"What AI already does in healthcare — and what's still missing"</div></div>
       </div>
+
       <div class="speaker-card kabil reveal">
         <div class="speaker-photo-wrap">
           <div class="speaker-photo">
@@ -580,14 +592,32 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
           </div>
           <div class="speaker-badge"><div class="speaker-name">Mr. Kabil Mbarki</div><div class="speaker-company">CEO & Founder · KaTEK</div></div>
         </div>
-        <div class="speaker-role-chips"><span class="role-chip">Speaker</span><span class="role-chip">Workshop Co-Facilitator</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span></div>
-        <p class="speaker-bio">Computer Engineer and CEO of KaTEK, specializing in Robotics, IoT, Embedded Systems, and AI-driven solutions. From mobile development to autonomous vehicles and edge AI, Mr. Mbarki builds systems that exist in the physical world — not just on slides. His engineering mindset will challenge every team to think beyond the concept and into the actual mechanism of their solution.</p>
+        <div class="speaker-role-chips"><span class="role-chip">Speaker</span><span class="role-chip">Workshop Co-Facilitator</span><span class="role-chip">Mentor</span><span class="role-chip">Jury</span><span class="role-chip">April 22 Workshop</span></div>
+        <p class="speaker-bio">Computer Engineer and CEO of KaTEK, specializing in Robotics, IoT, Embedded Systems, and AI-driven solutions. From mobile development to autonomous vehicles and edge AI, Mr. Mbarki builds systems that exist in the physical world — not just on slides. He facilitates the pre-event workshop online on April 22nd, then joins on April 25th as speaker, co-facilitator, and juror.</p>
         <div class="strengths">
-          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Full-stack builder:</strong> Mobile → Embedded → Robotics → AI. Rare end-to-end technical depth from a Tunisian startup.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Full-stack builder:</strong> Mobile → Embedded → Robotics → AI. Rare end-to-end technical depth.</div></div>
           <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Real systems:</strong> Autonomous vehicles. IoT devices. Edge AI. He ships things that run in the physical world.</div></div>
-          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Student-founder model:</strong> Founded KaTEK as an engineer — his path is directly relevant to every participant.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Student-founder model:</strong> Founded KaTEK as an engineer — directly relevant to every participant.</div></div>
         </div>
-        <div class="talk-box"><div class="talk-label">Talk · 20 min</div><div class="talk-title">"From idea to product — building AI systems that exist in the real world"</div></div>
+        <div class="talk-box"><div class="talk-label">Talk · 20 min · April 25</div><div class="talk-title">"From idea to product — building AI systems that exist in the real world"</div></div>
+      </div>
+
+      <div class="speaker-card sawsen reveal">
+        <div class="speaker-photo-wrap">
+          <div class="speaker-photo">
+            <img src="sawsen.png" alt="Ms. Sawsen Haj Amor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-placeholder" style="display:none"><span class="initials">SH</span></div>
+          </div>
+          <div class="speaker-badge"><div class="speaker-name">Ms. Sawsen Haj Amor</div><div class="speaker-company">CEO · YOU.Branded</div></div>
+        </div>
+        <div class="speaker-role-chips"><span class="role-chip">Pitching Workshop Host</span><span class="role-chip">Media Host</span><span class="role-chip">Public Speaker</span></div>
+        <p class="speaker-bio">AI and business journalist, media host, and CEO of YOU.Branded — where she helps companies and entrepreneurs understand and apply AI in the real world. Host of Business Talk, where she interviews innovators and technology leaders. She also teaches AI and its business applications to university students and regularly moderates conferences on technology, innovation, and economic transformation.</p>
+        <div class="strengths">
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Communication expert:</strong> Professional media host who knows exactly how to make ideas land clearly in front of any audience.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>AI educator:</strong> Teaches AI to students and business owners — she speaks the language of both worlds.</div></div>
+          <div class="strength"><div class="strength-dot"></div><div class="strength-text"><strong>Stage presence:</strong> Experienced conference moderator — she will make the pitch session dynamic and memorable.</div></div>
+        </div>
+        <div class="talk-box"><div class="talk-label">Pitching Workshop Host · April 25 · 10:00 – 11:30</div><div class="talk-title">"How to pitch your idea — structure, delivery, and impact in front of a jury"</div></div>
       </div>
     </div>
   </div>
@@ -608,42 +638,138 @@ footer{padding:2rem;text-align:center;border-top:1px solid var(--glass-border);b
   </div>
 </section>
 
+<!-- APRIL 22 PRE-EVENT WORKSHOP -->
+<section id="workshop22">
+  <div class="container">
+    <div class="section-label">Pre-Event · April 22 · Online</div>
+    <h2 class="section-title">Design Thinking for Impact</h2>
+    <div class="sep"></div>
+    <p class="section-desc">Three days before the ideathon, participants join an <strong style="color:var(--text);">online workshop</strong> facilitated by Mr. Kabil Mbarki — arriving on April 25th already trained, confident, and ready to ideate from minute one.</p>
+
+    <!-- confidentiality note -->
+    <div style="max-width:760px;margin:0 auto 2.5rem;padding:1.25rem 1.5rem;border-radius:16px;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.3);display:flex;gap:1rem;align-items:flex-start;backdrop-filter:blur(20px);position:relative;overflow:hidden;" class="reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(245,158,11,.5),transparent);"></div>
+      <div style="font-size:22px;flex-shrink:0;margin-top:2px;">⚠️</div>
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:600;letter-spacing:1px;color:rgba(245,158,11,.9);margin-bottom:6px;text-transform:uppercase;">Confidential — Health Topic Still Hidden</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.75;">The April 22nd workshop uses a <strong style="color:var(--text);">neutral, non-health example</strong> to teach the canvas. Participants learn the framework without knowing the domain. The health theme is revealed only at the <strong style="color:var(--text);">very end of this session</strong> as a teaser — their first clue going into the weekend.</div>
+      </div>
+    </div>
+
+    <!-- what happens -->
+    <div class="about-grid reveal" style="margin-bottom:2.5rem;">
+      <div class="about-card">
+        <div class="about-card-icon">◈</div>
+        <div class="about-card-title">Step 1 — The Problem</div>
+        <div class="about-card-body">Participants practice identifying a real human problem using a neutral everyday scenario. They learn to describe who suffers, what they miss, and why existing solutions fail.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">◉</div>
+        <div class="about-card-title">Step 2 — The AI Role</div>
+        <div class="about-card-body">Teams map what the AI detects, predicts, or suggests — in plain language. No code, no jargon. They practice separating "what the AI does" from "what the product does."</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⬡</div>
+        <div class="about-card-title">Step 3 — The Impact</div>
+        <div class="about-card-body">Teams articulate who benefits, how daily life changes, and whether the idea is realistic. Two teams present their canvas live for rapid feedback from the room.</div>
+      </div>
+    </div>
+
+    <!-- session timeline -->
+    <div class="judging-intro-box reveal" style="margin-bottom:2rem;">
+      <p class="judging-intro-text" style="text-align:left;">
+        <strong style="color:var(--text);display:block;margin-bottom:.75rem;font-family:'Cinzel',serif;letter-spacing:1px;">April 22nd Session Plan · Online · Mr. Kabil Mbarki</strong>
+        <span style="display:flex;flex-direction:column;gap:.6rem;">
+          <span><em>Introduction & context</em> — Why this ideathon exists. What AI actually means for someone with no technical background. (15 min)</span>
+          <span><em>Canvas walkthrough</em> — Live demo of the 3-step canvas using a neutral everyday example not related to health. (20 min)</span>
+          <span><em>Team practice</em> — Participants fill their own canvas with a scenario of their choosing. (30 min)</span>
+          <span><em>Live presentations</em> — 2 teams present their canvas. Room gives structured feedback. (20 min)</span>
+          <span><em>Cliffhanger reveal</em> — The health theme is announced as the domain for April 25th. No further details — just the domain, to build anticipation over the weekend. (5 min)</span>
+        </span>
+      </p>
+    </div>
+
+    <!-- your role note -->
+    <div class="decision-box reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--pink),var(--cyan),transparent);"></div>
+      <div class="decision-title">Mr. Kabil Mbarki — Your Role on April 22nd</div>
+      <div class="j-card" style="background:rgba(236,72,153,.04);border-color:rgba(236,72,153,.15);max-width:600px;margin:0 auto;">
+        <div class="j-step"><div class="j-num">→</div><div class="j-text">Lead the full session online. Open with context on what makes a good AI idea — without referencing health specifically.</div></div>
+        <div class="j-step"><div class="j-num">→</div><div class="j-text">Facilitate the canvas walkthrough using a neutral example of your choice — something accessible and universally relatable.</div></div>
+        <div class="j-step"><div class="j-num">→</div><div class="j-text">Circulate during team practice — challenge weak assumptions, answer questions, encourage bold thinking.</div></div>
+        <div class="j-step"><div class="j-num">→</div><div class="j-text">Provide feedback during live canvas presentations — focusing on AI clarity and feasibility.</div></div>
+        <div class="j-step"><div class="j-num">→</div><div class="j-text">Close the session with the health theme reveal — announced as the domain for April 25th, no further detail. End on a strong note.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- TIMELINE -->
 <section id="timeline">
   <div class="container">
-    <div class="section-label">The Journey</div>
-    <h2 class="section-title">Event Timeline</h2>
+    <div class="section-label">The Full Program</div>
+    <h2 class="section-title">Three Dates — Your Complete Roadmap</h2>
     <div class="sep"></div>
-    <p class="section-desc">April 25, 2025 · ESPRIM, Monastir · Full day starting at 8:00 AM</p>
+    <p class="section-desc">The event begins April 22nd, not April 25th. Here is the complete picture — including what participants know, what they don't, and your role at each step.</p>
+
+    <!-- APRIL 22 BLOCK -->
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+        <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);white-space:nowrap;">April 22 · Pre-Event</div>
+        <div style="flex:1;height:1px;background:linear-gradient(to right,rgba(245,158,11,.4),transparent);"></div>
+      </div>
+      <div style="background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.22);border-radius:20px;padding:2rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);"></div>
+        <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:.35rem;">Workshop — "Design Thinking for Impact"</div>
+        <div style="font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.5px;margin-bottom:1rem;">Facilitated by Mr. Kabil Mbarki · CEO of KaTEK</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.85;margin-bottom:1.25rem;">Mr. Mbarki walks participants through the ideation canvas — Problem → AI Role → Impact — using a neutral real-world example. By the end, every team has practiced the exact framework they'll use to build their April 25th project over the weekend.<br><br>The session ends with the <strong style="color:var(--text);">live reveal of the health theme</strong> as their first real canvas challenge — a cliffhanger going into the weekend. Participants now know the topic and can start building immediately.</div>
+        <div style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.18);border-radius:12px;padding:.9rem 1.1rem;font-size:12px;color:var(--muted);line-height:1.7;">
+          <strong style="color:var(--gold);">Your role (Mr. Kabil Mbarki):</strong> Lead facilitator for the full session. Walk the room through each canvas step with a worked example, then introduce the health theme challenge and let teams attempt their first draft canvas before the end of the session.
+        </div>
+      </div>
+    </div>
+
+    <!-- APRIL 24 BLOCK -->
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+        <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--pink);white-space:nowrap;">April 24 · Midnight</div>
+        <div style="flex:1;height:1px;background:linear-gradient(to right,rgba(236,72,153,.4),transparent);"></div>
+      </div>
+      <div style="background:rgba(236,72,153,.04);border:1px solid rgba(236,72,153,.2);border-radius:20px;padding:1.5rem 2rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--pink),transparent);"></div>
+        <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:.35rem;">Project Submission Deadline</div>
+        <div style="font-size:12px;color:var(--pink);font-weight:600;letter-spacing:.5px;margin-bottom:.75rem;">April 24 · 11:59 PM</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.8;">Every team submits their completed project before midnight. On April 25th, teams arrive ready to present their already-built solution — not to create it from scratch. The pitch session is the final stage of a process that started April 22nd.</div>
+      </div>
+    </div>
+
+    <!-- APRIL 25 BLOCK -->
+    <div class="reveal" style="margin-bottom:1.5rem;">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+        <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--blue-light);white-space:nowrap;">April 25 · Ideathon Day</div>
+        <div style="flex:1;height:1px;background:linear-gradient(to right,rgba(59,130,246,.4),transparent);"></div>
+        <div style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;">8:00 AM – 4:00 PM</div>
+      </div>
+    </div>
+
     <div class="tl-container reveal">
       <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:00 – 08:15</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:00 – 08:15</div><div class="tl-duration">· 15 min</div></div><div class="tl-tag ceremony">Setup</div><div class="tl-card-title">Registration & Welcome</div><div class="tl-card-body">Organizers arrive. Welcome desk opens. Teams check in and receive their participant kits including the printed ideation canvas.</div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:15 – 08:35</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:15 – 08:35</div><div class="tl-duration">· 20 min</div></div><div class="tl-tag speaker">Talk</div><div class="tl-card-title">Mr. Abdelhamid Chaoua — Keynote Talk</div><div class="tl-card-body">"What AI already does in healthcare — and what's still missing." A real patient story from CAREDIFY. The health gap in MENA. A call to action for the room. ⚠️ The health topic is not yet revealed to participants at this point — keep your talk broad on AI in healthcare.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:00 – 09:00</div><div class="tl-duration">60 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:00 – 09:00</div><div class="tl-duration">· 60 min</div></div><div class="tl-tag ceremony">Setup</div><div class="tl-card-title">Registration</div><div class="tl-card-body">Welcome desk opens. Teams check in. Participants arrive knowing the theme and with a submitted project — today is about presenting, not building.</div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:35 – 08:55</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:35 – 08:55</div><div class="tl-duration">· 20 min</div></div><div class="tl-tag speaker">Talk</div><div class="tl-card-title">Mr. Kabil Mbarki — Tech Talk</div><div class="tl-card-body">"From idea to product." How KaTEK goes from concept to a real working system — no jargon, just the thinking process behind building things that actually exist.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:00 – 10:00</div><div class="tl-duration">60 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">09:00 – 10:00</div><div class="tl-duration">· 60 min</div></div><div class="tl-tag speaker">Talk + Opening</div><div class="tl-card-title">Mr. Abdelhamid Chaoua — Keynote + Opening Ceremony</div><div class="tl-card-body">"What AI already does in healthcare — and what's still missing." A real patient story from CAREDIFY. The health gap in MENA. Followed by the official opening of the ideathon for the full room. <span style="color:rgba(245,158,11,.8);font-weight:600;">Note: participants already know the theme from April 22nd — your talk can go deep on the health angle.</span></div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">08:55 – 09:10</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">08:55 – 09:10</div><div class="tl-duration">· 15 min</div></div><div class="tl-tag ceremony">Q&A</div><div class="tl-card-title">Open Q&A — Both Guests on Stage</div><div class="tl-card-body">Mr. Abdelhamid Chaoua & Mr. Kabil Mbarki together. Open floor — participants ask anything. Moderated to 3–4 questions. Sets the energy before the reveal.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">10:00 – 11:30</div><div class="tl-duration">90 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">10:00 – 11:30</div><div class="tl-duration">· 90 min</div></div><div class="tl-tag workshop">Workshop</div><div class="tl-card-title">Pitching Workshop — Ms. Sawsen Haj Amor</div><div class="tl-card-body">Hosted by Sawsen Haj Amor — AI journalist, media host, and CEO of YOU.Branded. She leads a dedicated session on how to pitch an idea in front of a jury: structure, timing, delivery, and impact. Teams practice their pitch before the real session. Her role is to make every team confident and stage-ready.</div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:10 – 09:25</div><div class="tl-duration">15 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">09:10 – 09:25</div><div class="tl-duration">· 15 min</div></div><div class="tl-tag ceremony">Reveal</div><div class="tl-card-title">Theme Reveal — "AI for Everyday Health"</div><div class="tl-card-body">The challenge theme is announced live for the first time. The three tracks are unveiled — Detect, Guide, Access. This is the moment participants learn the health angle they've been building towards without knowing it.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">11:30 – 12:30</div><div class="tl-duration">60 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">11:30 – 12:30</div><div class="tl-duration">· 60 min</div></div><div class="tl-tag ceremony">Break</div><div class="tl-card-title">Pause Café</div><div class="tl-card-body">Coffee break for participants. Mr. Chaoua and Mr. Mbarki are hosted separately by the organizing committee.</div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">09:30 – 10:15</div><div class="tl-duration">45 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner pink"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">09:30 – 10:15</div><div class="tl-duration">· 45 min</div></div><div class="tl-tag workshop">Workshop</div><div class="tl-card-title">Joint Workshop — Mr. Chaoua & Mr. Mbarki</div><div class="tl-card-body">Both guests co-facilitate: "From Symptom to System." Teams fill the 3-step canvas together. Mr. Chaoua covers the health & impact layer. Mr. Mbarki covers the AI & technical layer. 2 teams share their canvas live for rapid feedback from both.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">12:30 – 13:30</div><div class="tl-duration">60 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">12:30 – 13:30</div><div class="tl-duration">· 60 min</div></div><div class="tl-tag ideation">Prep</div><div class="tl-card-title">Pitch Rehearsal</div><div class="tl-card-body">Each team has one hour to rehearse their presentation, designate the speaker, and finalize slides. The IEEE committee circulates for coaching. Mr. Chaoua and Mr. Mbarki may join teams at their discretion.</div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">10:30 – 12:00</div><div class="tl-duration">90 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">10:30 – 12:00</div><div class="tl-duration">· 90 min</div></div><div class="tl-tag ideation">Ideation</div><div class="tl-card-title">Ideation Phase — Teams Work</div><div class="tl-card-body">Teams brainstorm freely. Define the problem, shape the AI solution, map the impact. Both guests are informally accessible. Milestone check at 30 min.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">13:30 – 15:00</div><div class="tl-duration">Pitch Session</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">13:30 – 15:00</div><div class="tl-duration">· Pitch Session</div></div><div class="tl-tag pitch">Pitches</div><div class="tl-card-title">Pitch Session — Jury Panel</div><div class="tl-card-body">5 min pitch + 3 to 5 min Q&A per team. Jury: Mr. Chaoua + Mr. Mbarki + 1 organizer. Each juror scores independently on a shared scoresheet. No scores revealed between pitches.</div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">12:00 – 12:40</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">12:00 – 12:40</div><div class="tl-duration">· 40 min</div></div><div class="tl-tag ceremony">Break</div><div class="tl-card-title">Lunch Break</div><div class="tl-card-body">Participants have lunch in the event space. Mr. Chaoua and Mr. Mbarki are hosted separately by the organizing committee for a private lunch.</div></div></div></div>
+      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:00 – 16:00</div><div class="tl-duration">60 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">15:00 – 16:00</div><div class="tl-duration">· 60 min</div></div><div class="tl-tag ceremony">Closing</div><div class="tl-card-title">Closing Ceremony & Winner Announcement</div><div class="tl-card-body">Jury deliberation (first 20 min, closed). Then: jury feedback, winners announced, certificates awarded. Group photo. The portal closes.</div></div></div></div>
 
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">12:40 – 14:10</div><div class="tl-duration">90 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">12:40 – 14:10</div><div class="tl-duration">· 90 min</div></div><div class="tl-tag ideation">Deep Work</div><div class="tl-card-title">Deep Ideation + Pitch Structuring</div><div class="tl-card-body">Teams refine their solution and build their pitch narrative. Define the story, create a simple visual. Ideas first — slides come only at the end of this block.</div></div></div></div>
-
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">14:10 – 15:00</div><div class="tl-duration">50 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner cyan"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">14:10 – 15:00</div><div class="tl-duration">· 50 min</div></div><div class="tl-tag mentoring">Mentoring</div><div class="tl-card-title">Mentoring Rounds — IEEE Committee</div><div class="tl-card-body">The IEEE SB ESPRIM committee rotates across teams — 5 minutes per team, structured feedback on the problem definition, AI solution, and pitch readiness. Mr. Chaoua and Mr. Mbarki may join teams at their discretion.</div></div></div></div>
-
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:00 – 15:30</div><div class="tl-duration">30 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner gold"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">15:00 – 15:30</div><div class="tl-duration">· 30 min</div></div><div class="tl-tag ideation">Prep</div><div class="tl-card-title">Final Pitch Preparation</div><div class="tl-card-body">Teams finalize slides or boards. Designate the presenter. Internal rehearsal. A countdown timer ensures every team is ready on time.</div></div></div></div>
-
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">15:30 – 17:30</div><div class="tl-duration">Pitch Session</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">15:30 – 17:30</div><div class="tl-duration">· Pitch Session</div></div><div class="tl-tag pitch">Pitches</div><div class="tl-card-title">Pitch Session — Jury Panel</div><div class="tl-card-body">5 min pitch + 3 to 5 min Q&A per team. Jury: Mr. Chaoua + Mr. Mbarki + 1 organizer. Each juror scores independently on a shared scoresheet.</div></div></div></div>
-
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">17:30 – 17:50</div><div class="tl-duration">20 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner blue"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">17:30 – 17:50</div><div class="tl-duration">· 20 min</div></div><div class="tl-tag pitch">Jury</div><div class="tl-card-title">Jury Deliberation</div><div class="tl-card-body">Closed scoring session. Scores are averaged. Ties broken by jury discussion. Organizers prepare the award display while participants wait.</div></div></div></div>
-
-      <div class="tl-item"><div class="tl-time-side"><div class="tl-time">17:50 – 18:30</div><div class="tl-duration">40 min</div></div><div class="tl-center"><div class="tl-dot-outer"><div class="tl-dot-inner purple"></div></div></div><div class="tl-content"><div class="tl-card"><div class="tl-time-inline"><div class="tl-time">17:50 – 18:30</div><div class="tl-duration">· 40 min</div></div><div class="tl-tag ceremony">Closing</div><div class="tl-card-title">Awards & Closing Ceremony</div><div class="tl-card-body">Jury feedback — one sentence per winning team from each juror. Winners announced. Certificates awarded. Group photo. The portal closes.</div></div></div></div>
     </div>
   </div>
 </section>
